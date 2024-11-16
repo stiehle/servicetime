@@ -1,17 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
 import { Database } from "../types/database.types";
 
-// export enum tableName {
-//   technician = "service_technician",
-// }
-
-// export type supabaseAction = {
-//   type: "READ_DATA" | "ADD_DATA" | "REMOVE_DATA" | "UPDATE_DATA";
-//   table: tableName;
-//   command: string;
-//   row: {};
-// };
-
 export const supabase = createClient<Database>(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_ACCESS_TOKEN);
 
 export async function signInWithPassword() {
@@ -28,35 +17,17 @@ export async function signInWithPassword() {
   }
 }
 
-// export async function supabaseManagement(action: supabaseAction) {
-//   switch (action.type) {
-//     case "READ_DATA": {
-//       const { data, error } = await supabase.from(action.table).select(action.command);
+export async function fetchData() {
+  const { data, error } = await supabase
+    .from("service_technician")
+    .select("id, personal_nr,  first_name, last_name, technician-field_of_app(service_technician(first_name), field_of_app, field_of_application(type), note)");
 
-//       if (error) {
-//         console.log(error);
-//       }
+  if (error) {
+    console.log(error);
+  }
+  console.log(data);
+  return data;
+}
 
-//       return data;
-//     }
-
-//     case "ADD_DATA": {
-//       const { error } = await supabase.from(action.table).insert(action.row);
-//       console.log(action.row);
-//       if (error) {
-//         console.log(error);
-//       }
-
-//       return true;
-//     }
-
-//     case "REMOVE_DATA": {
-//       const { data, error } = await supabase.from(action.table).delete().eq("personal_nr", Number(action.command)).select();
-//       if (error) {
-//         console.log(error);
-//       }
-//       return data;
-//     }
-//   }
-
-//console.log(data);
+//       "id, personal_nr,  first_name, last_name, technician-field_of_app(service_technician(first_name), field_of_app, field_of_application(type), note)",
+//     row: { personal_nr: 1018, first_name: "Duke", last_name: "Power" },

@@ -1,0 +1,24 @@
+.person {
+  display: flex;
+  flex-direction: column;
+  background-color: #e7e0b4;
+  align-items: center;
+  gap: 1rem;
+
+  &__item {
+    height: 6rem;
+    background-color: #93be93;
+    width: 90%;
+    overflow-y: auto;
+
+    p {
+      display: inline-block;
+      font-size: smaller;
+    }
+  }
+
+  &__number {
+    color: #ffffff;
+    font-size: smaller;
+  }
+}

@@ -1,51 +1,33 @@
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.scss";
-// import { createClient } from "@supabase/supabase-js";
-// import { Database } from "./types/database.types";
-import { supabase } from "./utils/supabase";
+
+import ErrorPage from "./routes/Error/ErrorPage";
+import Main from "./routes/Main/Main";
+import EditPerson from "./routes/Edit/Person/EditPerson";
 
 function App() {
   // signInWithPassword();
 
-  fetchData();
-
-  async function fetchData() {
-    const { data, error } = await supabase
-      .from("service_technician")
-      .select(
-        "id, personal_nr,  first_name, last_name, technician-field_of_app(service_technician(first_name), field_of_app, field_of_application(type), note)"
-      );
-
-    if (error) {
-      console.log(error);
-    }
-    console.log(data);
-    return data;
-  }
-
-  //     type: "READ_DATA",
-  //     table: tableName.technician,
-  //     command:
-  //       "id, personal_nr,  first_name, last_name, technician-field_of_app(service_technician(first_name), field_of_app, field_of_application(type), note)",
-  //     row: { personal_nr: 1018, first_name: "Duke", last_name: "Power" },
-  //   });
-  //   console.log(x);
-  // }
-
-  // test();
-
-  // async function test() {
-  //   let x = supabaseReducer({
-  //     type: "READ_DATA",
-  //     table: "service_technician",
-  //     command: "id, first_name, last_name, technician-field_of_app(service_technician(first_name), field_of_app, field_of_application(type), note)",
-  //   });
-
-  //   console.log(x);
-  // }
+  const router = createBrowserRouter(
+    [
+      {
+        path: "/",
+        errorElement: <ErrorPage />,
+        element: <Main />,
+        children: [
+          { path: "edit/person", element: <EditPerson /> },
+          //   //   { path: "/overview", element: <Overview /> },
+          //   //   { path: "/edit/:itemId", element: <EditView /> },
+          //   //   { path: "/create", element: <Createview /> },
+        ],
+      },
+    ],
+    { basename: "/servicetime/" }
+  );
 
   return (
     <>
-      <h1>Hallo</h1>
+      <RouterProvider router={router} />
     </>
   );
 }

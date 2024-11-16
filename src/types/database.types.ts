@@ -83,45 +83,51 @@ export type Database = {
       }
       service_technician: {
         Row: {
-          first_name: string | null
+          first_name: string
           id: number
-          last_name: string | null
+          last_name: string
+          personal_nr: number
         }
         Insert: {
-          first_name?: string | null
+          first_name: string
           id?: number
-          last_name?: string | null
+          last_name: string
+          personal_nr: number
         }
         Update: {
-          first_name?: string | null
+          first_name?: string
           id?: number
-          last_name?: string | null
+          last_name?: string
+          personal_nr?: number
         }
         Relationships: []
       }
-      "technician-field_of_app": {
+      technician_field_of_app: {
         Row: {
           field_of_app: number
+          note: string | null
           technician: number
         }
         Insert: {
-          field_of_app: number
+          field_of_app?: number
+          note?: string | null
           technician: number
         }
         Update: {
           field_of_app?: number
+          note?: string | null
           technician?: number
         }
         Relationships: [
           {
-            foreignKeyName: "technician-application_field_of_app_fkey"
+            foreignKeyName: "technician_field_of_app_field_of_app_fkey"
             columns: ["field_of_app"]
             isOneToOne: false
             referencedRelation: "field_of_application"
             referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "technician-application_technician_fkey"
+            foreignKeyName: "technician_field_of_app_technician_fkey"
             columns: ["technician"]
             isOneToOne: false
             referencedRelation: "service_technician"
