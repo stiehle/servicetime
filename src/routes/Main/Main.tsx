@@ -7,8 +7,10 @@ import { Outlet } from "react-router-dom";
 function Main() {
   return (
     <div className="main">
+      <Outlet />
       <div className="main__wrapper-view">
-        <Outlet />
+        {/* <Outlet /> */}
+
         <div className="main__wrapper-content">
           <div className="main__sidebar">
             <Sidebar />

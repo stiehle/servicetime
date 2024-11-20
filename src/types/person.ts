@@ -8,6 +8,10 @@ export type service_person = {
     note: string | null;
     technician: number;
   }[];
+  field_of_application: {
+    id: number;
+    type: string | null;
+  }[];
 };
 
 export type service_persons = {
@@ -19,5 +23,9 @@ export type service_persons = {
     field_of_app: number;
     note: string | null;
     technician: number;
+  }[];
+  field_of_application: {
+    id: number;
+    type: string | null;
   }[];
 }[];
