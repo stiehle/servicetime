@@ -3,12 +3,14 @@ import { useParams } from "react-router-dom";
 import PersonsForm from "../../../components/PersonsForm/PersonsForm";
 import { PersonContext } from "../../../context/PersonContext";
 import { useContext } from "react";
-import { service_person } from "../../../types/person";
+import { ServicePerson } from "../../../types/person";
 
 function EditPerson() {
   const { persons } = useContext(PersonContext);
   const { itemId } = useParams();
-  const selectedPerson: service_person | undefined = persons.find((item) => item.id === Number(itemId));
+  const selectedPerson: ServicePerson | undefined = persons.find(
+    (item) => item.id === Number(itemId)
+  );
   console.log(itemId, selectedPerson);
 
   if (selectedPerson) {

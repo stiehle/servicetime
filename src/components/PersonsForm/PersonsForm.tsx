@@ -1,41 +1,67 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useFormInput } from "../../hooks/useFormInput";
-import { service_person } from "../../types/person";
+import { ServicePerson } from "../../types/person";
 import TextInput from "../Textinput/Textinput";
 
 import "./PersonsForm.scss";
+import { supabase } from "../../utils/supabase";
 
-type personProp = {
-  selectedPerson: service_person;
+type PersonProp = {
+  selectedPerson: ServicePerson;
 };
 
-function PersonsForm(person: personProp) {
+type FieldOFApp = {
+  id: number;
+  type: string;
+  note: string;
+  checked: boolean;
+};
+
+function PersonsForm(person: PersonProp) {
   console.log(person);
 
-  const [fieldOfApp, setFieldOfApp] = useState<{ nr: number; type: string; note: string; checked: boolean }[]>([]);
+  useEffect(() => {
+    fetchFieldOfApplication();
+  }, []);
+
+  const [fieldOfApp, setFieldOfApp] = useState<FieldOFApp[]>([]);
+  // const [fieldOfApp, setFieldOfApp] = useState<Tables<"field_of_application">[]>([]);
 
   const firstName = useFormInput(person ? person.selectedPerson.first_name : "", true);
   const lastName = useFormInput(person ? person.selectedPerson.last_name : "", true);
   const personalNr = useFormInput(person ? String(person.selectedPerson.personal_nr) : "", true);
 
-  // function test() {
-  //   if (person) {
-  //     return (
-  //       <>
-  //         {/* <h3>OK</h3>
-  //         <p>{person.selectedPerson.first_name}</p> */}
-  //         <TextInput
-  //           value={firstName.value}
-  //           onChange={firstName.handleInputChangeEvent}
-  //           error={firstName.error}
-  //           id={String(person.selectedPerson.id)}
-  //           name={"Vorname"}
-  //         />
-  //       </>
-  //     );
-  //   }
-  //   return <h2>Hallo</h2>;
-  // }
+  async function fetchFieldOfApplication() {
+    // const { data, error } = await supabase.from("service_technician").select("*");
+    const { data, error } = await supabase.from("field_of_application").select("*");
+
+    if (error) {
+      console.log(error);
+    }
+
+    if (data) {
+      let fieldofApp: FieldOFApp[] = [];
+      console.log(data);
+      // setFieldOfApp(data);
+      data.map((item) => {
+        console.log(item, fieldOfApp);
+        fieldofApp.push({ id: item.id, type: item.type, note: "", checked: false });
+
+        //console.log();
+
+        // setFieldOfApp([
+        //   ...fieldOfApp,
+        //   ...[{ id: item.id, type: item.type, note: "", checked: false }],
+        // ]);
+        // setFieldOfApp([...fieldOfApp, { id: item.id, type: item.type }]);
+        // setFieldOfApp([{ id: item.id, type: item.type }], ...[]);
+      });
+      setFieldOfApp(fieldofApp);
+      console.log(fieldOfApp);
+    } else return;
+
+    // console.log(data);
+  }
 
   function fieldOfApplication() {
     console.log(person.selectedPerson.technician_field_of_app);
@@ -80,6 +106,7 @@ function PersonsForm(person: personProp) {
       />
 
       <h2>Einsatzbereiche</h2>
+      <>{console.log(fieldOfApp)}</>
       <div>{fieldOfApplication()}</div>
     </div>
   );

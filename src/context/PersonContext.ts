@@ -1,9 +1,12 @@
 import { createContext, Dispatch } from "react";
-import { personManagementState, personMangementAction } from "./../hooks/personManagementReducer";
+import {
+  PersonManagementState,
+  PersonMangementAction,
+} from "./../hooks/personManagementReducer";
 
 export const PersonContext = createContext<{
-  persons: personManagementState;
-  personsDispatch: Dispatch<personMangementAction>;
+  persons: PersonManagementState;
+  personsDispatch: Dispatch<PersonMangementAction>;
 }>({
   persons: [],
   personsDispatch: () => {},

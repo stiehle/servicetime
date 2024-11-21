@@ -1,19 +1,19 @@
-import { service_person, service_persons } from "../types/person";
+import { ServicePerson } from "../types/person";
 
-export type personManagementState = service_persons;
+export type PersonManagementState = ServicePerson[];
 
-export type personMangementAction =
+export type PersonMangementAction =
   | {
       type: "INIT_PERSONS";
-      person: service_persons;
+      person: ServicePerson[];
     }
   | {
       type: "ADD_PERSON" | "REMOVE_PERSON" | "UPDATE_PERSON";
-      person: service_person;
+      person: ServicePerson;
     };
 
-export default function userManagementReducer(prevState: personManagementState, action: personMangementAction) {
-  let updatedState: service_persons;
+export default function userManagementReducer(prevState: PersonManagementState, action: PersonMangementAction) {
+  let updatedState: ServicePerson[];
   // console.log(prevState);
 
   switch (action.type) {
