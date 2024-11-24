@@ -15,14 +15,13 @@ function App() {
   const [persons, personsDispatch] = useReducer(userManagementReducer, []);
 
   useEffect(() => {
-    // checkUserLogIn();
     fetchPersonData();
-    //
   }, []);
 
   // "id, personal_nr,  first_name, last_name, technician-field_of_app(service_technician(first_name), field_of_app, field_of_application(type), note)",
+  // const { data, error } = await supabase.from("service_technician").select("*");
+
   async function fetchPersonData() {
-    // const { data, error } = await supabase.from("service_technician").select("*");
     const { data, error } = await supabase
       .from("service_technician")
       .select("id, personal_nr,  first_name, last_name, technician_field_of_app(*), field_of_application(*)");

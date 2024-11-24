@@ -1,7 +1,7 @@
 .calendar {
   display: flex;
   flex-direction: column;
-  background-color: #ce97cb;
+  // background-color: #ce97cb;
 
   width: 100%;
   height: 100%;
@@ -20,7 +20,7 @@
 
   &__head-info {
     width: 20%;
-    background-color: #a2d4c1;
+    // background-color: #a2d4c1;
   }
 
   &__head-date {
@@ -29,7 +29,7 @@
   }
 
   &__body {
-    background-color: #ffffb7;
+    // background-color: #ffffb7;
     width: 100%;
     height: 100%;
     // height: 100%;
@@ -38,16 +38,17 @@
   &__wrapper {
     display: flex;
     flex-direction: row;
-    background-color: #c28aba;
+    // background-color: #c28aba;
     // width: 100%;
     height: 100%;
     overflow-y: auto;
-    margin: 1rem 0;
+    // margin: 1rem 0;
   }
 
   &__persons {
-    background-color: #b4d6d8;
-    height: 100%;
+    background-color: #d1c97e;
+    height: fit-content;
     width: 20%;
+    padding: 1rem 0;
   }
 }

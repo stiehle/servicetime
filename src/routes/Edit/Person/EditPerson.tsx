@@ -8,10 +8,8 @@ import { ServicePerson } from "../../../types/person";
 function EditPerson() {
   const { persons } = useContext(PersonContext);
   const { itemId } = useParams();
-  const selectedPerson: ServicePerson | undefined = persons.find(
-    (item) => item.id === Number(itemId)
-  );
-  console.log(itemId, selectedPerson);
+  const selectedPerson: ServicePerson | undefined = persons.find((item) => item.id === Number(itemId));
+  // console.log(itemId, selectedPerson);
 
   if (selectedPerson) {
     return (
