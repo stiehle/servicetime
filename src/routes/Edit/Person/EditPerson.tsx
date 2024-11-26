@@ -16,7 +16,8 @@ function EditPerson() {
       <div className="editperson">
         <div className="editperson__back">
           <div className="editperson__input">
-            <PersonsForm selectedPerson={selectedPerson} />
+            <PersonsForm person={selectedPerson} />
+            {/* <PersonsForm person={null} /> */}
           </div>
         </div>
       </div>

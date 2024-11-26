@@ -4,6 +4,37 @@
   gap: 1rem;
   background-color: #e0d9d9;
   padding: 2rem;
+
+  &__button {
+    width: 10rem;
+    height: fit-content;
+    cursor: pointer;
+  }
+
+  &__menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    // background-color: #b1b1b1;
+    padding: 0.5rem;
+  }
+
+  &__cancel-button,
+  &__delete-button {
+    color: #2a43cf;
+    cursor: pointer;
+  }
+
+  &__delete-button {
+    color: #cf2a2a;
+  }
+
+  &__menu-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+  }
 }
 
 .fieldofapplication {
@@ -18,13 +49,6 @@
     // background-color: #86cc78;
   }
 
-  // &__fields {
-  //   display: grid;
-  //   grid-template-columns: 2rem 12rem auto;
-  //   font-size: 1.3rem;
-  //   background-color: #e7da9c;
-  // }
-
   &__container {
     display: grid;
     grid-template-columns: 4rem 12rem auto;
@@ -36,7 +60,7 @@
   &__item-note {
     display: flex;
     justify-content: center;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: #ffffffcc;
     border: 1px solid rgba(0, 0, 0, 0.8);
     padding: 5px;
     font-size: 1.2rem;
@@ -57,7 +81,7 @@
 
   &__container:has(:hover) {
     cursor: pointer;
-    background-color: rgb(42, 67, 207);
+    background-color: #2a43cf;
   }
 
   &__icon {
