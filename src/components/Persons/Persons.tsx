@@ -22,8 +22,8 @@ function Persons() {
             <div className="person__name">{person.first_name + " " + person.last_name}</div>
             <div className="person__number">{person.id + ", " + person.personal_nr}</div>
 
-            {person.technician_field_of_app &&
-              person.technician_field_of_app.map((field) => {
+            {person.tech_field &&
+              person.tech_field.map((field) => {
                 // console.log(":", field);
                 return (
                   <div key={field.field_of_app}>

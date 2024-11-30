@@ -39,7 +39,7 @@ function App() {
   // }
 
   async function fetchPersonData() {
-    const { data, error } = await supabase.from("service_technician").select("id, personal_nr,  first_name, last_name, technician_field_of_app(*)");
+    const { data, error } = await supabase.from("service_technician").select("id, personal_nr,  first_name, last_name, tech_field(*)");
 
     if (error) {
       console.log(error);

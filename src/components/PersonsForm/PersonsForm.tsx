@@ -27,7 +27,7 @@ type FieldOFApp = {
 function PersonsForm({ person }: PersonProp) {
   useEffect(() => {
     fetchFieldOfApplication();
-    console.log(person);
+    // console.log(person);
   }, []);
 
   const navigate = useNavigate();
@@ -52,7 +52,7 @@ function PersonsForm({ person }: PersonProp) {
   function checkPersonFieldOfApplication(id: number) {
     // console.log(id);
     if (person) {
-      const found = person.technician_field_of_app.find((item) => {
+      const found = person.tech_field.find((item) => {
         return item.field_of_app === id;
       });
 
@@ -107,21 +107,21 @@ function PersonsForm({ person }: PersonProp) {
 
       //console.log(found);
     }
-    console.log(found, fieldOfApp);
+    // console.log(found, fieldOfApp);
     setFieldOfApp(newField);
   }
 
   function savePersonData() {
-    console.log("save");
-    console.log(person);
-    console.log(fieldOfApp);
+    // console.log("save");
+    // console.log(person);
+    // console.log(fieldOfApp);
 
     if (isValidInputs()) {
       function createFieldOfApp(newPerson: ServicePerson) {
         fieldOfApp.forEach((item) => {
-          console.log(item);
+          // console.log(item);
           if (item.checked) {
-            newPerson.technician_field_of_app.push({ note: item.note, technician: newPerson.id, field_of_app: item.id });
+            newPerson.tech_field.push({ note: item.note, technician: newPerson.id, field_of_app: item.id });
           }
         });
       }
@@ -129,8 +129,8 @@ function PersonsForm({ person }: PersonProp) {
       if (person) {
         const newPerson: ServicePerson = { ...person };
 
-        console.log("new", newPerson);
-        newPerson.technician_field_of_app = [];
+        // console.log("new", newPerson);
+        newPerson.tech_field = [];
 
         createFieldOfApp(newPerson);
 
@@ -142,7 +142,7 @@ function PersonsForm({ person }: PersonProp) {
 
         personsDispatch({ type: "UPDATE_PERSON", person: newPerson });
 
-        console.log("save Update Person");
+        // console.log("save Update Person");
 
         // console.log(updatePersons);
         navigate("/");
@@ -152,7 +152,7 @@ function PersonsForm({ person }: PersonProp) {
           first_name: firstName.value,
           last_name: lastName.value,
           personal_nr: Number(personalNr.value),
-          technician_field_of_app: [],
+          tech_field: [],
         };
 
         createFieldOfApp(newPerson);

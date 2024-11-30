@@ -1,6 +1,14 @@
 import { ServicePerson } from "../types/person";
 import { supabase } from "../utils/supabase";
 
+type TechField = {
+  field_of_app: number;
+  note: string | null;
+  technician: number;
+};
+
+let dev = true;
+
 export type PersonManagementState = ServicePerson[];
 
 export type PersonMangementAction =
@@ -15,7 +23,75 @@ export type PersonMangementAction =
 
 export default function userManagementReducer(prevState: PersonManagementState, action: PersonMangementAction) {
   let updatedState: ServicePerson[];
-  // console.log(prevState);
+
+  function slicePersonData(person: ServicePerson) {
+    const { id, first_name, last_name, personal_nr } = person;
+
+    const newPerson = {
+      id: id,
+      personal_nr: personal_nr,
+      first_name: first_name,
+      last_name: last_name,
+    };
+    // console.log(newPerson);
+
+    const { tech_field } = person;
+    // console.log(tech_field);
+
+    return { newPerson, tech_field };
+  }
+
+  async function removeFieldOfApp(personId: number, field: number) {
+    // console.log("remove", personId);
+
+    const { error } = await supabase.from("tech_field").delete().eq("technician, field_of_app", personId).in("field_of_app", [field]);
+
+    if (error) {
+      console.log(error);
+    }
+    // console.log(data);
+  }
+
+  // const { error } = await supabase.from("tech_field").delete().eq("technician, field_of_app", personId).in("field_of_app", [2]);
+
+  // async function removeFieldsOfApp(personId: number) {
+  //   console.log("remove", personId);
+
+  //   const { error } = await supabase.from("tech_field").delete().eq("technician", personId).in("field_of_app", [1, 2, 3, 4]);
+  //   if (error) {
+  //     console.log(error);
+  //   }
+  //   // console.log(data);
+  // }
+
+  // const writeNewFieldsOfApp = (technician_field_of_app: { field_of_app: number; note: string | null; technician: number }[]) => {
+  //   technician_field_of_app.map(async (fieldOfApp) => {
+  //     const { data, error } = await supabase.from("technician_field_of_app").insert(fieldOfApp);
+  //     if (error) {
+  //       console.log(error);
+  //     }
+  //     console.log(data);
+  //   });
+  // };
+
+  // const writeNewFieldOfApp = (field: FieldOfApp) => {
+  //   console.log("write", field);
+  //   async () => {
+  //     const { data, error } = await supabase.from("technician_field_of_app").insert(field);
+  //     if (error) {
+  //       console.log(error);
+  //     }
+  //     console.log(data);
+  //   };
+  // };
+
+  async function writeNewFieldOFApp(field: TechField) {
+    const { error } = await supabase.from("tech_field").upsert({ field_of_app: field.field_of_app, technician: field.technician, note: field.note });
+    if (error) {
+      console.log(error);
+    }
+    // console.log(data);
+  }
 
   switch (action.type) {
     case "ADD_PERSON": {
@@ -30,29 +106,92 @@ export default function userManagementReducer(prevState: PersonManagementState, 
 
     case "UPDATE_PERSON": {
       updatedState = prevState.map((pers) => (pers.id === action.person.id ? action.person : pers));
-      console.log(action.person);
+      // console.log(updatedState, action.person);
 
-      // test(action);
+      // let x = [{ ...action.person.technician_field_of_app }];
+      // console.log(x);
 
-      // async function test(action: { person: ServicePerson }) {
-      //   console.log("test");
-      //   const { data, error } = await supabase.from("service_technician").update(action.person).eq("id", action.person.id).select();
-      //   if (error) {
-      //     console.log(error);
-      //   }
-      //   // return data;
-      //   console.log(data);
+      const { newPerson, tech_field } = slicePersonData(action.person);
+      console.log(newPerson, tech_field);
+
+      const prevPerson = prevState.find((person) => {
+        return person.id === action.person.id;
+      });
+
+      // if (prevPerson) {
+      //   let array1: number[] = [];
+      //   let array2: number[] = [];
+      //   prevPerson.tech_field.map((field) => {
+      //     console.log("#", field.field_of_app);
+      //     array1.push(field.field_of_app);
+      //   });
+
+      //   tech_field.map((selectedField) => {
+      //     array2.push(selectedField.field_of_app);
+      //   });
+
+      //   console.log(array1, array2);
+      //   let difference = array1.filter((x) => !array2.includes(x));
+      //   let intersection = array1.filter((x) => array2.includes(x));
+      //   let symDifference = array1.filter((x) => !array2.includes(x)).concat(array2.filter((x) => !array1.includes(x)));
+      //   console.log(difference, intersection, symDifference);
       // }
 
-      // const { data, error } = await supabase.from("service_technician").select("id, personal_nr,  first_name, last_name, technician_field_of_app(*)");
+      const updatePerson = async () => {
+        const { error } = await supabase.from("service_technician").update(newPerson).eq("id", newPerson.id).select();
+        if (error) {
+          console.log(error);
+        }
+      };
 
-      // export async function updateData(updatedData: { id: number; row: {} }) {
-      //   const { data, error } = await supabase.from("tasklist").update(updatedData.row).eq("id", updatedData.id).select();
-      //   if (error) {
-      //     console.log(error);
-      //   }
-      //   return data;
-      // }
+      if (prevPerson) {
+        let arrayPrev: number[] = [];
+        let arraySelected: number[] = [];
+
+        prevPerson.tech_field.map((field) => {
+          // console.log("#", field.field_of_app);
+          arrayPrev.push(field.field_of_app);
+        });
+        tech_field.map((selectedField) => {
+          // console.log("**", selectedField.field_of_app);
+          arraySelected.push(selectedField.field_of_app);
+        });
+
+        let symDifference = arrayPrev.filter((x) => !arraySelected.includes(x)).concat(arraySelected.filter((x) => !arrayPrev.includes(x)));
+        console.log(arrayPrev, arraySelected, symDifference);
+        //   console.log(difference, intersection, symDifference);
+
+        symDifference.map((x) => {
+          if (arrayPrev.includes(x)) {
+            console.log("delete", x);
+            removeFieldOfApp(newPerson.id, x);
+          }
+
+          if (arraySelected.includes(x)) {
+            console.log("write", x);
+            writeNewFieldOFApp({ field_of_app: x, technician: newPerson.id, note: "new" });
+          }
+        });
+      }
+
+      updatePerson();
+
+      // let tempTechnicianFieldOfApp: FieldOfApp[] = [...technician_field_of_app];
+
+      // removeFieldsOfApp(newPerson.id);
+      // removeFieldsOfApp(field.technician, field.field_of_app);
+
+      // const test = tech_field.map((field, nr) => {
+      //   console.log(nr, field);
+
+      //   writeNewFieldOFApp(field);
+      //   console.log("write!");
+      // });
+
+      // test;
+      // dev = false;
+
+      // technician_field_of_app = [];
 
       break;
     }

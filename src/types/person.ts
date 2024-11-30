@@ -3,7 +3,7 @@ export type ServicePerson = {
   personal_nr: number;
   first_name: string;
   last_name: string;
-  technician_field_of_app: {
+  tech_field: {
     field_of_app: number;
     note: string | null;
     technician: number;

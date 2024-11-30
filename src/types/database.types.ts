@@ -102,19 +102,22 @@ export type Database = {
         }
         Relationships: []
       }
-      technician_field_of_app: {
+      tech_field: {
         Row: {
           field_of_app: number
+          id: number
           note: string | null
           technician: number
         }
         Insert: {
           field_of_app?: number
+          id?: number
           note?: string | null
           technician: number
         }
         Update: {
           field_of_app?: number
+          id?: number
           note?: string | null
           technician?: number
         }
