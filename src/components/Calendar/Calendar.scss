@@ -21,6 +21,8 @@
   &__head-info {
     width: 20%;
     // background-color: #a2d4c1;
+    background-color: #5c5c5c;
+    color: cornsilk;
   }
 
   &__head-date {
@@ -43,10 +45,11 @@
     height: 100%;
     overflow-y: auto;
     // margin: 1rem 0;
+    scrollbar-width: none;
   }
 
   &__persons {
-    background-color: #d1c97e;
+    background-color: #5c5c5c;
     height: fit-content;
     width: 20%;
     padding: 1rem 0;
@@ -58,6 +61,6 @@
 
   &__add-person:hover {
     // color: white;
-    fill: #0042f8;
+    fill: #51ff00;
   }
 }

@@ -1,56 +1,25 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.scss";
-
 import ErrorPage from "./routes/Error/ErrorPage";
 import Main from "./routes/Main/Main";
 import EditPerson from "./routes/Edit/Person/EditPerson";
-import { useEffect, useReducer } from "react";
-import userManagementReducer from "./hooks/personManagementReducer";
-import { supabase } from "./utils/supabase";
-import { PersonContext } from "./context/PersonContext";
 import CreateNewPerson from "./routes/Create/CreatePerson";
+import PersonContextProvider, { newPersonContext } from "./context/PersonContextProvider";
+import { useContext, useEffect } from "react";
 
 function App() {
+  // const { testPerson } = useContext(newPersonContext);
+
   // signInWithPassword();
 
-  const [persons, personsDispatch] = useReducer(userManagementReducer, []);
+  // useEffect(() => {
+  //   testPerson(1234);
+  // }, []);
 
-  useEffect(() => {
-    fetchPersonData();
-  }, []);
-
-  // "id, personal_nr,  first_name, last_name, technician-field_of_app(service_technician(first_name), field_of_app, field_of_application(type), note)",
-  // const { data, error } = await supabase.from("service_technician").select("*");
-
-  // async function fetchPersonData() {
-  //   const { data, error } = await supabase
-  //     .from("service_technician")
-  //     .select("id, personal_nr,  first_name, last_name, technician_field_of_app(*), field_of_application(*)");
-
-  //   if (error) {
-  //     console.log(error);
-  //   }
-
-  //   if (data) {
-  //     personsDispatch({ type: "INIT_PERSONS", person: data });
-  //   } else return;
-
-  //   console.log(data);
+  // function fetch() {
+  //   console.log("fetche");
+  //   fetchPersonsData();
   // }
-
-  async function fetchPersonData() {
-    const { data, error } = await supabase.from("service_technician").select("id, personal_nr,  first_name, last_name, tech_field(*)");
-
-    if (error) {
-      console.log(error);
-    }
-
-    if (data) {
-      personsDispatch({ type: "INIT_PERSONS", person: data });
-    } else return;
-
-    console.log(data);
-  }
 
   const router = createBrowserRouter(
     [
@@ -69,9 +38,9 @@ function App() {
 
   return (
     <>
-      <PersonContext.Provider value={{ persons, personsDispatch }}>
+      <PersonContextProvider>
         <RouterProvider router={router} />
-      </PersonContext.Provider>
+      </PersonContextProvider>
     </>
   );
 }

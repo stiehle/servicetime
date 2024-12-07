@@ -4,14 +4,15 @@ import { ServicePerson } from "../../types/person";
 import TextInput from "../Textinput/Textinput";
 
 import "./PersonsForm.scss";
-import { supabase } from "../../utils/supabase";
+import { supabase } from "../../database/supabase";
 
 import { IconContext } from "react-icons";
 import { FaRegCheckCircle, FaRegTrashAlt } from "react-icons/fa";
 import { FaRegCircleXmark } from "react-icons/fa6";
-import { PersonContext } from "../../context/PersonContext";
+// import { PersonContext } from "../../context/PersonContext";
 import { useNavigate } from "react-router-dom";
 import { MdCancel, MdSaveAlt } from "react-icons/md";
+import { newPersonContext } from "../../context/PersonContextProvider";
 
 type PersonProp = {
   person: ServicePerson | null;
@@ -26,16 +27,17 @@ type FieldOFApp = {
 
 function PersonsForm({ person }: PersonProp) {
   useEffect(() => {
-    fetchFieldOfApplication();
-    // console.log(person);
+    if (person) {
+      fetchFieldOfApplication();
+      // console.log(person);
+    }
   }, []);
+
+  const { addNewPerson, updatePerson, deletePerson } = useContext(newPersonContext);
 
   const navigate = useNavigate();
   // console.log(person);
-
   const [fieldOfApp, setFieldOfApp] = useState<FieldOFApp[]>([]);
-
-  const { personsDispatch } = useContext(PersonContext);
 
   const firstName = useFormInput(person ? person.first_name : "", true);
   const lastName = useFormInput(person ? person.last_name : "", true);
@@ -71,6 +73,7 @@ function PersonsForm({ person }: PersonProp) {
   }
 
   async function fetchFieldOfApplication() {
+    console.log("fetch");
     const newFieldOfApp: FieldOFApp[] = [];
     // const { data, error } = await supabase.from("service_technician").select("*");
     const { data, error } = await supabase.from("field_of_application").select("*");
@@ -82,7 +85,12 @@ function PersonsForm({ person }: PersonProp) {
     if (data) {
       data.map((item) => {
         const check = checkPersonFieldOfApplication(item.id);
-        newFieldOfApp.push({ id: item.id, type: item.type, note: check.note, checked: check.checked });
+        newFieldOfApp.push({
+          id: item.id,
+          type: item.type,
+          note: check.note,
+          checked: check.checked,
+        });
       });
     } else return;
     setFieldOfApp(newFieldOfApp);
@@ -121,7 +129,11 @@ function PersonsForm({ person }: PersonProp) {
         fieldOfApp.forEach((item) => {
           // console.log(item);
           if (item.checked) {
-            newPerson.tech_field.push({ note: item.note, technician: newPerson.id, field_of_app: item.id });
+            newPerson.tech_field.push({
+              note: item.note,
+              technician: newPerson.id,
+              field_of_app: item.id,
+            });
           }
         });
       }
@@ -140,11 +152,11 @@ function PersonsForm({ person }: PersonProp) {
 
         console.log("new", newPerson);
 
-        personsDispatch({ type: "UPDATE_PERSON", person: newPerson });
+        // personsDispatch({ type: "UPDATE_PERSON", person: newPerson });
 
-        // console.log("save Update Person");
+        console.log("save Update Person");
+        updatePerson(newPerson);
 
-        // console.log(updatePersons);
         navigate("/");
       } else {
         const newPerson: ServicePerson = {
@@ -155,11 +167,8 @@ function PersonsForm({ person }: PersonProp) {
           tech_field: [],
         };
 
-        createFieldOfApp(newPerson);
-        personsDispatch({ type: "ADD_PERSON", person: newPerson });
-
-        console.log("save New Person");
-
+        addNewPerson(newPerson);
+        console.log(newPerson);
         navigate("/");
       }
     }
@@ -173,7 +182,8 @@ function PersonsForm({ person }: PersonProp) {
     if (person) {
       const question = confirm("Soll diese Person wirklich gelöscht werden");
       if (question) {
-        personsDispatch({ type: "REMOVE_PERSON", person: person });
+        // personsDispatch({ type: "REMOVE_PERSON", person: person });
+        deletePerson(person);
         navigate("/");
       }
     } else {
@@ -248,7 +258,7 @@ function PersonsForm({ person }: PersonProp) {
           id={personalNr.value}
           name={"Personal Nummer"}
         />
-        {fieldOfApplication()}
+        {person && fieldOfApplication()}
 
         <button className={"person-form__button"} onClick={savePersonData}>
           <MdSaveAlt />

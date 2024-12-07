@@ -1,12 +1,14 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { PersonContext } from "../../context/PersonContext";
+// import { PersonContext } from "../../context/PersonContext";
 import "./Persons.scss";
+import { newPersonContext } from "../../context/PersonContextProvider";
 
 function Persons() {
   const navigate = useNavigate();
 
-  const { persons } = useContext(PersonContext);
+  // const { persons } = useContext(PersonContext);
+  const { persons } = useContext(newPersonContext);
   // const { itemId } = useParams();
 
   function personSelect(id: number) {

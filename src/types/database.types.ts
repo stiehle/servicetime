@@ -123,17 +123,17 @@ export type Database = {
         }
         Relationships: [
           {
+            foreignKeyName: "tech_field_technician_fkey"
+            columns: ["technician"]
+            isOneToOne: false
+            referencedRelation: "service_technician"
+            referencedColumns: ["id"]
+          },
+          {
             foreignKeyName: "technician_field_of_app_field_of_app_fkey"
             columns: ["field_of_app"]
             isOneToOne: false
             referencedRelation: "field_of_application"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "technician_field_of_app_technician_fkey"
-            columns: ["technician"]
-            isOneToOne: false
-            referencedRelation: "service_technician"
             referencedColumns: ["id"]
           },
         ]
