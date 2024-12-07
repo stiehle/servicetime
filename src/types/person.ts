@@ -10,6 +10,12 @@ export type ServicePerson = {
   }[];
 };
 
+export type TechField = {
+  field_of_app: number;
+  note: string | null;
+  technician: number;
+};
+
 // export type ServicePersons = {
 //   id: number;
 //   personal_nr: number;

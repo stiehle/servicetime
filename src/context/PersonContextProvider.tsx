@@ -1,5 +1,5 @@
 import { createContext, Dispatch, ReactNode, useContext, useEffect, useReducer } from "react";
-import { ServicePerson } from "../types/person";
+import { ServicePerson, TechField } from "../types/person";
 import { supabase } from "../database/supabase";
 import userManagementReducer, { PersonManagementState, PersonMangementAction } from "../hooks/personManagementReducer";
 // import { addNewPerson } from "../database/supabase";
@@ -23,22 +23,20 @@ type Props = {
   children: ReactNode;
 };
 
-type TechField = {
-  field_of_app: number;
-  note: string | null;
-  technician: number;
-};
+// type TechField = {
+//   field_of_app: number;
+//   note: string | null;
+//   technician: number;
+// };
 
 // function PersonContextProvider({children}: {children: ReactNode}) {
 function PersonContextProvider(props: Props) {
   // console.log(props.children);
   useEffect(() => {
-    // fetchPersonsData();
     fetchPersonsData();
   }, []);
 
   const [persons, personsDispatch] = useReducer(userManagementReducer, []);
-  //  const { persons, personsDispatch } = useContext(newPersonContext);
 
   function slicePersonData(person: ServicePerson) {
     const { id, first_name, last_name, personal_nr } = person;
@@ -53,7 +51,6 @@ function PersonContextProvider(props: Props) {
 
     const { tech_field } = person;
     // console.log(tech_field);
-
     return { newPerson, tech_field };
   }
 

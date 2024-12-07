@@ -1,19 +1,47 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-// import { PersonContext } from "../../context/PersonContext";
 import "./Persons.scss";
 import { newPersonContext } from "../../context/PersonContextProvider";
+import { TechField } from "../../types/person";
+import { IconContext } from "react-icons";
+import { CgAdd } from "react-icons/cg";
+import { HiComputerDesktop, HiWrenchScrewdriver } from "react-icons/hi2";
+import { IoFlash } from "react-icons/io5";
+import { FaListAlt } from "react-icons/fa";
 
 function Persons() {
   const navigate = useNavigate();
 
-  // const { persons } = useContext(PersonContext);
   const { persons } = useContext(newPersonContext);
-  // const { itemId } = useParams();
 
   function personSelect(id: number) {
     console.log("id:", id);
     navigate("/edit/person/" + id);
+  }
+
+  function createTechField(personTechField: TechField[]) {
+    const iconStock = [<CgAdd />, <HiWrenchScrewdriver />, <IoFlash />, <HiComputerDesktop />, <FaListAlt />];
+    // console.log(personTechField);
+
+    const sortedPersonTechField = personTechField.sort((A, B) => A.field_of_app - B.field_of_app);
+
+    function selectIcon(id: number) {
+      if (id > 4) id = 0;
+      return <>{iconStock[id]}</>;
+    }
+
+    return sortedPersonTechField.map((field) => {
+      return (
+        <div key={field.field_of_app}>
+          <IconContext.Provider value={{ size: "20px" }}>
+            <div className={"person__techfield--" + `${field.field_of_app}`}>
+              {selectIcon(field.field_of_app)}
+              {/* {field.field_of_app} */}
+            </div>
+          </IconContext.Provider>
+        </div>
+      );
+    });
   }
 
   return (
@@ -21,10 +49,13 @@ function Persons() {
       {persons.map((person) => {
         return (
           <div key={person.id} className="person__item" onClick={() => personSelect(person.id)}>
-            <div className="person__name">{person.first_name + " " + person.last_name}</div>
+            <div className="person__name">
+              <h4>{person.first_name + " " + person.last_name}</h4>
+            </div>
             <div className="person__number">{person.id + ", " + person.personal_nr}</div>
-
-            {person.tech_field &&
+            <div className="person__techfield">{createTechField(person.tech_field)}</div>
+            {/* {person.tech_field && 
+           
               person.tech_field.map((field) => {
                 // console.log(":", field);
                 return (
@@ -35,7 +66,7 @@ function Persons() {
                     <h6>{field.note}</h6>
                   </div>
                 );
-              })}
+              })} */}
           </div>
         );
       })}
