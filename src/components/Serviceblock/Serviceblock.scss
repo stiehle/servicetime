@@ -1,0 +1,49 @@
+.serviceblock {
+  display: flex;
+  flex-direction: column;
+  // background-color: #e7e0b4;
+  align-items: center;
+  gap: 1rem;
+
+  &__wrapper {
+    display: flex;
+    flex-direction: row;
+    height: 10rem;
+    background-color: #828873;
+    width: 100%;
+    //
+  }
+
+  &__block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    width: 100%;
+    background-color: #808080;
+    color: #ffffff;
+    padding: 0.2rem;
+    margin: 0.2rem;
+    border: 1px solid #000000;
+    overflow-y: auto;
+    scrollbar-width: none;
+  }
+
+  &__head {
+    background-color: #555351;
+    height: 20px;
+  }
+
+  &__work {
+    background-color: #3b2f1d;
+    border-radius: 10px;
+    height: fit-content;
+    padding: 0.2rem;
+    border: 1px solid #ffffff;
+    font-size: 12px;
+  }
+
+  &__person {
+    background-color: #8cacac;
+    font-size: 12px;
+  }
+}

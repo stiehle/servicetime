@@ -33,7 +33,7 @@ function Persons() {
     return sortedPersonTechField.map((field) => {
       return (
         <div key={field.field_of_app}>
-          <IconContext.Provider value={{ size: "20px" }}>
+          <IconContext.Provider value={{ size: "15px" }}>
             <div className={"person__techfield--" + `${field.field_of_app}`}>
               {selectIcon(field.field_of_app)}
               {/* {field.field_of_app} */}
@@ -49,24 +49,12 @@ function Persons() {
       {persons.map((person) => {
         return (
           <div key={person.id} className="person__item" onClick={() => personSelect(person.id)}>
-            <div className="person__name">
-              <h4>{person.first_name + " " + person.last_name}</h4>
+            <div className="person__wrapper">
+              <div className="person__name">{person.first_name}</div>
+              <div className="person__name">{person.last_name}</div>
+              <div className="person__number">{person.id + ", " + person.personal_nr}</div>
+              <div className="person__techfield">{createTechField(person.tech_field)}</div>
             </div>
-            <div className="person__number">{person.id + ", " + person.personal_nr}</div>
-            <div className="person__techfield">{createTechField(person.tech_field)}</div>
-            {/* {person.tech_field && 
-           
-              person.tech_field.map((field) => {
-                // console.log(":", field);
-                return (
-                  <div key={field.field_of_app}>
-                    <div>
-                      <p>#{field.field_of_app}</p>
-                    </div>
-                    <h6>{field.note}</h6>
-                  </div>
-                );
-              })} */}
           </div>
         );
       })}

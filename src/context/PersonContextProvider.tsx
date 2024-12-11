@@ -1,7 +1,7 @@
-import { createContext, Dispatch, ReactNode, useContext, useEffect, useReducer } from "react";
+import { createContext, ReactNode, useEffect, useReducer } from "react";
 import { ServicePerson, TechField } from "../types/person";
 import { supabase } from "../database/supabase";
-import userManagementReducer, { PersonManagementState, PersonMangementAction } from "../hooks/personManagementReducer";
+import userManagementReducer, { PersonManagementState } from "../hooks/personManagementReducer";
 // import { addNewPerson } from "../database/supabase";
 
 export const newPersonContext = createContext<{
