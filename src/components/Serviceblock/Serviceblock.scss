@@ -14,7 +14,7 @@
     //
   }
 
-  &__block {
+  &__day {
     display: flex;
     flex-direction: column;
     gap: 0.2rem;
@@ -43,7 +43,7 @@
   }
 
   &__person {
-    background-color: #8cacac;
+    background-color: #316ea7;
     font-size: 12px;
   }
 }
