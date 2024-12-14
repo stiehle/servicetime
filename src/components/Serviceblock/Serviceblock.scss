@@ -8,7 +8,7 @@
   &__wrapper {
     display: flex;
     flex-direction: row;
-    height: 10rem;
+    height: 12rem;
     background-color: #828873;
     width: 100%;
     //
@@ -30,7 +30,7 @@
 
   &__head {
     background-color: #555351;
-    height: 20px;
+    min-height: 20px;
   }
 
   &__work {
@@ -39,7 +39,19 @@
     height: fit-content;
     padding: 0.2rem;
     border: 1px solid #ffffff;
-    font-size: 12px;
+    font-size: 0.7rem;
+
+    // overflow-x: hidden;
+    // scrollbar-width: none;
+    // overflow: hidden;
+  }
+
+  &__work-id {
+    font-size: 0.8rem;
+  }
+
+  &__work-time {
+    font-style: italic;
   }
 
   &__person {

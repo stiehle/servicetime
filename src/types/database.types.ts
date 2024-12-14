@@ -36,10 +36,10 @@ export type Database = {
           id: number
           location: string | null
           note: string | null
-          priority: string | null
-          status: string | null
-          technician: string | null
-          time_of_action: string | null
+          priority: number | null
+          technician: number | null
+          time_of_action_end: string | null
+          time_of_action_start: string | null
           time_period_of: string | null
           time_period_util: string | null
         }
@@ -54,10 +54,10 @@ export type Database = {
           id?: number
           location?: string | null
           note?: string | null
-          priority?: string | null
-          status?: string | null
-          technician?: string | null
-          time_of_action?: string | null
+          priority?: number | null
+          technician?: number | null
+          time_of_action_end?: string | null
+          time_of_action_start?: string | null
           time_period_of?: string | null
           time_period_util?: string | null
         }
@@ -72,14 +72,22 @@ export type Database = {
           id?: number
           location?: string | null
           note?: string | null
-          priority?: string | null
-          status?: string | null
-          technician?: string | null
-          time_of_action?: string | null
+          priority?: number | null
+          technician?: number | null
+          time_of_action_end?: string | null
+          time_of_action_start?: string | null
           time_period_of?: string | null
           time_period_util?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "service_block_technician_fkey"
+            columns: ["technician"]
+            isOneToOne: false
+            referencedRelation: "service_technician"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       service_technician: {
         Row: {

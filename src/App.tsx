@@ -5,6 +5,7 @@ import Main from "./routes/Main/Main";
 import EditPerson from "./routes/Edit/Person/EditPerson";
 import CreateNewPerson from "./routes/Create/CreatePerson";
 import PersonContextProvider from "./context/PersonContextProvider";
+import ServiceBlockProvider from "./context/ServiceBlockProvider";
 
 function App() {
   const router = createBrowserRouter(
@@ -25,7 +26,9 @@ function App() {
   return (
     <>
       <PersonContextProvider>
-        <RouterProvider router={router} />
+        <ServiceBlockProvider>
+          <RouterProvider router={router} />
+        </ServiceBlockProvider>
       </PersonContextProvider>
     </>
   );

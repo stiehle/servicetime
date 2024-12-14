@@ -14,7 +14,7 @@ function Calendar() {
   const weekDayNameShort = ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"];
 
   useEffect(() => {
-    createCalendarDays(0, 7, false);
+    createCalendarDays(0, 14, false);
   }, []);
 
   function createCalendarDays(daysOffset: number, duration: number, firstDayOfWeek = false) {
