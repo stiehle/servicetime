@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Persons.scss";
-import { newPersonContext } from "../../context/PersonContextProvider";
+import { NewPersonContext } from "../../context/PersonContextProvider";
 import { TechField } from "../../types/person";
 import { IconContext } from "react-icons";
 import { CgAdd } from "react-icons/cg";
@@ -12,7 +12,7 @@ import { FaListAlt } from "react-icons/fa";
 function Persons() {
   const navigate = useNavigate();
 
-  const { persons } = useContext(newPersonContext);
+  const { persons } = useContext(NewPersonContext);
 
   function personSelect(id: number) {
     console.log("id:", id);

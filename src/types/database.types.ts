@@ -89,6 +89,36 @@ export type Database = {
           },
         ]
       }
+      service_field: {
+        Row: {
+          field_of_app: number
+          service_block: number
+        }
+        Insert: {
+          field_of_app: number
+          service_block: number
+        }
+        Update: {
+          field_of_app?: number
+          service_block?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "service_field_field_of_app_fkey"
+            columns: ["field_of_app"]
+            isOneToOne: false
+            referencedRelation: "field_of_application"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "service_field_service_block_fkey"
+            columns: ["service_block"]
+            isOneToOne: false
+            referencedRelation: "service_block"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       service_technician: {
         Row: {
           first_name: string

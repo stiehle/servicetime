@@ -46,12 +46,30 @@
     // overflow: hidden;
   }
 
+  &__work-priority--0 {
+    background-color: #7c2d2d;
+  }
+
+  &__work-priority--1 {
+    background-color: #c2ae40;
+  }
+
+  &__work-priority--2 {
+    background-color: #5d8029;
+  }
+
   &__work-id {
     font-size: 0.8rem;
+    overflow-x: hidden;
   }
 
   &__work-time {
     font-style: italic;
+    overflow-x: hidden;
+  }
+
+  &__work-customer {
+    overflow-x: hidden;
   }
 
   &__person {

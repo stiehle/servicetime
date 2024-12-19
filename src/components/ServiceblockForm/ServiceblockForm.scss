@@ -1,0 +1,38 @@
+.serviceblock-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: #e0d9d9;
+  padding: 2rem;
+
+  &__button {
+    width: 10rem;
+    height: fit-content;
+    cursor: pointer;
+  }
+
+  &__menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    // background-color: #b1b1b1;
+    padding: 0.5rem;
+  }
+
+  &__cancel-button,
+  &__delete-button {
+    color: #2a43cf;
+    cursor: pointer;
+  }
+
+  &__delete-button {
+    color: #cf2a2a;
+  }
+
+  &__menu-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+  }
+}

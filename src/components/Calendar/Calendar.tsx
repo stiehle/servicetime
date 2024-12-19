@@ -14,7 +14,7 @@ function Calendar() {
   const weekDayNameShort = ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"];
 
   useEffect(() => {
-    createCalendarDays(0, 14, false);
+    createCalendarDays(0, 12, false);
   }, []);
 
   function createCalendarDays(daysOffset: number, duration: number, firstDayOfWeek = false) {
@@ -25,7 +25,7 @@ function Calendar() {
     for (i; i < duration; i++) {
       // console.log(i);
       if (firstDayOfWeek) {
-        calendarDays.push(Number(getFirstDateOfWeek(Date.now())) + (daysOffset + i) * 86400000);
+        calendarDays.push(Number(getFirstDateOfWeek(now)) + (daysOffset + i) * 86400000);
       } else {
         calendarDays.push(now + (daysOffset + i) * 86400000);
       }
@@ -48,7 +48,7 @@ function Calendar() {
             <IoMdPersonAdd
               className="calendar__add-person"
               onClick={() => {
-                navigate("/create/");
+                navigate("/create/person/");
               }}
             />
           </div>

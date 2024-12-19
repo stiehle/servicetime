@@ -4,7 +4,7 @@ import { supabase } from "../database/supabase";
 import userManagementReducer, { PersonManagementState } from "../hooks/personManagementReducer";
 // import { addNewPerson } from "../database/supabase";
 
-export const newPersonContext = createContext<{
+export const NewPersonContext = createContext<{
   persons: PersonManagementState;
 
   addNewPerson: (newPerson: ServicePerson) => void;
@@ -19,9 +19,9 @@ export const newPersonContext = createContext<{
   fetchPersonsData: function () {},
 });
 
-type Props = {
-  children: ReactNode;
-};
+// type Props = {
+//   children: ReactNode;
+// };
 
 // type TechField = {
 //   field_of_app: number;
@@ -30,7 +30,7 @@ type Props = {
 // };
 
 // function PersonContextProvider({children}: {children: ReactNode}) {
-function PersonContextProvider(props: Props) {
+function PersonContextProvider({ children }: { children: ReactNode }) {
   // console.log(props.children);
   useEffect(() => {
     fetchPersonsData();
@@ -187,9 +187,7 @@ function PersonContextProvider(props: Props) {
     fetchPersons();
   }
 
-  return (
-    <newPersonContext.Provider value={{ addNewPerson, updatePerson, deletePerson, fetchPersonsData, persons }}>{props.children}</newPersonContext.Provider>
-  );
+  return <NewPersonContext.Provider value={{ addNewPerson, updatePerson, deletePerson, fetchPersonsData, persons }}>{children}</NewPersonContext.Provider>;
 }
 
 export default PersonContextProvider;

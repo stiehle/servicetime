@@ -4,7 +4,7 @@ import { ServicePerson } from "../../types/person";
 import TextInput from "../Textinput/Textinput";
 
 import "./PersonsForm.scss";
-import { supabase } from "../../database/supabase";
+// import { supabase } from "../../database/supabase";
 
 import { IconContext } from "react-icons";
 import { FaRegCheckCircle, FaRegTrashAlt } from "react-icons/fa";
@@ -12,7 +12,9 @@ import { FaRegCircleXmark } from "react-icons/fa6";
 // import { PersonContext } from "../../context/PersonContext";
 import { useNavigate } from "react-router-dom";
 import { MdCancel, MdSaveAlt } from "react-icons/md";
-import { newPersonContext } from "../../context/PersonContextProvider";
+import { NewPersonContext } from "../../context/PersonContextProvider";
+import { NewFieldOfAppContext } from "../../context/FieldOfAppContextProvider";
+// import { NewFieldOfAppContext } from "../../context/FieldOfAppContextProvider";
 
 type PersonProp = {
   person: ServicePerson | null;
@@ -28,16 +30,18 @@ type FieldOFApp = {
 function PersonsForm({ person }: PersonProp) {
   useEffect(() => {
     if (person) {
-      fetchFieldOfApplication();
+      newFetchFieldOfApplication();
       // console.log(person);
     }
   }, []);
 
-  const { addNewPerson, updatePerson, deletePerson } = useContext(newPersonContext);
+  const { addNewPerson, updatePerson, deletePerson } = useContext(NewPersonContext);
 
   const navigate = useNavigate();
   // console.log(person);
   const [fieldOfApp, setFieldOfApp] = useState<FieldOFApp[]>([]);
+
+  const { fieldOfApplication } = useContext(NewFieldOfAppContext);
 
   const firstName = useFormInput(person ? person.first_name : "", true);
   const lastName = useFormInput(person ? person.last_name : "", true);
@@ -72,18 +76,35 @@ function PersonsForm({ person }: PersonProp) {
     //  console.log(found);
   }
 
-  async function fetchFieldOfApplication() {
-    console.log("fetch");
+  // async function fetchFieldOfApplication() {
+  //   console.log("fetch");
+  //   const newFieldOfApp: FieldOFApp[] = [];
+  //   // const { data, error } = await supabase.from("service_technician").select("*");
+  //   const { data, error } = await supabase.from("field_of_application").select("*");
+
+  //   if (error) {
+  //     console.log(error);
+  //   }
+
+  //   if (data) {
+  //     data.map((item) => {
+  //       const check = checkPersonFieldOfApplication(item.id);
+  //       newFieldOfApp.push({
+  //         id: item.id,
+  //         type: item.type,
+  //         note: check.note,
+  //         checked: check.checked,
+  //       });
+  //     });
+  //   } else return;
+  //   setFieldOfApp(newFieldOfApp);
+  // }
+
+  function newFetchFieldOfApplication() {
     const newFieldOfApp: FieldOFApp[] = [];
-    // const { data, error } = await supabase.from("service_technician").select("*");
-    const { data, error } = await supabase.from("field_of_application").select("*");
 
-    if (error) {
-      console.log(error);
-    }
-
-    if (data) {
-      data.map((item) => {
+    if (fieldOfApplication) {
+      fieldOfApplication.map((item) => {
         const check = checkPersonFieldOfApplication(item.id);
         newFieldOfApp.push({
           id: item.id,
@@ -191,7 +212,7 @@ function PersonsForm({ person }: PersonProp) {
     }
   }
 
-  function fieldOfApplication() {
+  function showFieldOfApplication() {
     //  console.log(person.technician_field_of_app);
     return (
       <div className="fieldofapplication">
@@ -258,7 +279,7 @@ function PersonsForm({ person }: PersonProp) {
           id={personalNr.value}
           name={"Personal Nummer"}
         />
-        {person && fieldOfApplication()}
+        {person && showFieldOfApplication()}
 
         <button className={"person-form__button"} onClick={savePersonData}>
           <MdSaveAlt />

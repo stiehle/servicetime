@@ -3,9 +3,11 @@ import "./App.scss";
 import ErrorPage from "./routes/Error/ErrorPage";
 import Main from "./routes/Main/Main";
 import EditPerson from "./routes/Edit/Person/EditPerson";
-import CreateNewPerson from "./routes/Create/CreatePerson";
+import CreateNewPerson from "./routes/Create/Person/CreatePerson";
 import PersonContextProvider from "./context/PersonContextProvider";
 import ServiceBlockProvider from "./context/ServiceBlockProvider";
+import EditServiceBlock from "./routes/Edit/ServiceBlock/EditServiceBlock";
+import FieldOfAppProvider from "./context/FieldOfAppContextProvider";
 
 function App() {
   const router = createBrowserRouter(
@@ -16,7 +18,8 @@ function App() {
         element: <Main />,
         children: [
           { path: "/edit/person/:itemId", element: <EditPerson /> },
-          { path: "/create", element: <CreateNewPerson /> },
+          { path: "/edit/serviceblock/:itemId", element: <EditServiceBlock /> },
+          { path: "/create/person", element: <CreateNewPerson /> },
         ],
       },
     ],
@@ -27,7 +30,9 @@ function App() {
     <>
       <PersonContextProvider>
         <ServiceBlockProvider>
-          <RouterProvider router={router} />
+          <FieldOfAppProvider>
+            <RouterProvider router={router} />
+          </FieldOfAppProvider>
         </ServiceBlockProvider>
       </PersonContextProvider>
     </>

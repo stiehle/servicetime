@@ -35,6 +35,11 @@ export type ServiceBlock = {
   time_period_util: string | null;
 };
 
+export type FieldOFApplication = {
+  id: number;
+  type: string;
+};
+
 // export type ServicePersons = {
 //   id: number;
 //   personal_nr: number;
