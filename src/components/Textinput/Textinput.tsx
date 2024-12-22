@@ -8,9 +8,10 @@ type TextInputProps = {
   error: ValidationError;
   id: string;
   name: string;
+  size?: string;
 };
 
-function TextInput({ value, onChange, error, id, name }: TextInputProps) {
+function TextInput({ value, onChange, error, id, name, size }: TextInputProps) {
   function displayError() {
     if (error.isError) {
       return (
@@ -22,7 +23,7 @@ function TextInput({ value, onChange, error, id, name }: TextInputProps) {
   }
 
   return (
-    <div className="text-input">
+    <div className={"text-input text-input--" + `${size}`}>
       <label className="text-input__label" htmlFor={id}>
         {name}:
       </label>

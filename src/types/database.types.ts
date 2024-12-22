@@ -27,7 +27,6 @@ export type Database = {
       service_block: {
         Row: {
           action: string | null
-          appendix_no: string | null
           communication: string | null
           created_at: string
           customer: string | null
@@ -42,10 +41,10 @@ export type Database = {
           time_of_action_start: string | null
           time_period_of: string | null
           time_period_util: string | null
+          unit: string | null
         }
         Insert: {
           action?: string | null
-          appendix_no?: string | null
           communication?: string | null
           created_at?: string
           customer?: string | null
@@ -60,10 +59,10 @@ export type Database = {
           time_of_action_start?: string | null
           time_period_of?: string | null
           time_period_util?: string | null
+          unit?: string | null
         }
         Update: {
           action?: string | null
-          appendix_no?: string | null
           communication?: string | null
           created_at?: string
           customer?: string | null
@@ -78,6 +77,7 @@ export type Database = {
           time_of_action_start?: string | null
           time_period_of?: string | null
           time_period_util?: string | null
+          unit?: string | null
         }
         Relationships: [
           {

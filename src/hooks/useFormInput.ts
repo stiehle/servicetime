@@ -1,7 +1,11 @@
 import { useState } from "react";
 import { ValidationError } from "./../types/Validation";
 
-export function useFormInput(initialValue: string, required = false) {
+export function useFormInput(initialValue: string | null, required = false) {
+  if (initialValue === null) {
+    initialValue = "";
+  }
+
   const [value, setValue] = useState(initialValue);
   const [error, setError] = useState<ValidationError>({ isError: false, errorMessage: "" });
 

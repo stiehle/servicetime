@@ -18,7 +18,7 @@ export type TechField = {
 
 export type ServiceBlock = {
   action: string | null;
-  appendix_no: string | null;
+  unit: string | null;
   communication: string | null;
   created_at: string;
   customer: string | null;

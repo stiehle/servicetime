@@ -10,9 +10,12 @@
   &__input {
     position: absolute;
     height: 80%;
-    width: 80%;
-    inset: 10%;
+    width: 60%;
+    //inset: 10%;
+    margin: 5% 20%;
+
     background-color: #ffffff;
     z-index: 1;
+    overflow-y: auto;
   }
 }

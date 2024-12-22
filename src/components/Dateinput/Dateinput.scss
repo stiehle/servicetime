@@ -1,35 +1,18 @@
-.text-input {
+.date-input {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  // width: fit-content;
+  width: fit-content;
   gap: 0.2rem;
 
-  &--short {
-    width: 6rem;
-  }
-
-  &--middle {
-    width: 12rem;
-  }
-
-  &--long {
-    width: 16rem;
-  }
-
-  &--xxl {
-    width: 30rem;
-  }
-
-  &__text {
+  &__date {
     font-size: 1.3rem;
     padding: 0.5rem;
     border-radius: 10px;
   }
 
   &__label {
-    color: #fff9f9;
-    background-color: #225cd8;
+    color: coral;
+    background-color: beige;
     width: fit-content;
     border-radius: 10px;
     padding: 0 1rem;

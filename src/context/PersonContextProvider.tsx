@@ -39,7 +39,7 @@ function PersonContextProvider({ children }: { children: ReactNode }) {
   const [persons, personsDispatch] = useReducer(userManagementReducer, []);
 
   function slicePersonData(person: ServicePerson) {
-    const { id, first_name, last_name, personal_nr } = person;
+    const { id, first_name, last_name, personal_nr, tech_field } = person;
 
     const newPerson = {
       id: id,
@@ -49,7 +49,7 @@ function PersonContextProvider({ children }: { children: ReactNode }) {
     };
     // console.log(newPerson);
 
-    const { tech_field } = person;
+    // const { tech_field } = person;
     // console.log(tech_field);
     return { newPerson, tech_field };
   }

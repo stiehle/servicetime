@@ -30,7 +30,7 @@ type FieldOFApp = {
 function PersonsForm({ person }: PersonProp) {
   useEffect(() => {
     if (person) {
-      newFetchFieldOfApplication();
+      createNewFieldOfApplication();
       // console.log(person);
     }
   }, []);
@@ -100,7 +100,7 @@ function PersonsForm({ person }: PersonProp) {
   //   setFieldOfApp(newFieldOfApp);
   // }
 
-  function newFetchFieldOfApplication() {
+  function createNewFieldOfApplication() {
     const newFieldOfApp: FieldOFApp[] = [];
 
     if (fieldOfApplication) {
@@ -270,14 +270,22 @@ function PersonsForm({ person }: PersonProp) {
           </div>
         </div>
 
-        <TextInput value={firstName.value} onChange={firstName.handleInputChangeEvent} error={firstName.error} id={firstName.value} name={"Vorname"} />
-        <TextInput value={lastName.value} onChange={lastName.handleInputChangeEvent} error={lastName.error} id={lastName.value} name={"Nachname"} />
+        <TextInput
+          value={firstName.value}
+          onChange={firstName.handleInputChangeEvent}
+          error={firstName.error}
+          id={"firstName"}
+          name={"Vorname"}
+          size={"long"}
+        />
+        <TextInput value={lastName.value} onChange={lastName.handleInputChangeEvent} error={lastName.error} id={"lastName"} name={"Nachname"} size={"long"} />
         <TextInput
           value={personalNr.value}
           onChange={personalNr.handleInputChangeEvent}
           error={personalNr.error}
-          id={personalNr.value}
+          id={"personalNr"}
           name={"Personal Nummer"}
+          size={"long"}
         />
         {person && showFieldOfApplication()}
 
