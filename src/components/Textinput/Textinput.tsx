@@ -11,7 +11,7 @@ type TextInputProps = {
   size?: string;
 };
 
-function TextInput({ value, onChange, error, id, name, size }: TextInputProps) {
+function TextInput({ value, onChange, error, id, name, size = "x" }: TextInputProps) {
   function displayError() {
     if (error.isError) {
       return (

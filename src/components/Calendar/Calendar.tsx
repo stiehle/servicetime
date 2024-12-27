@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import Serviceblock from "../Serviceblock/Serviceblock";
 import { useEffect, useState } from "react";
 import { CalendarContext } from "../../context/CalendarContext";
+import { PiListPlusFill } from "react-icons/pi";
 
 function Calendar() {
   const [days, setDays] = useState<number[]>([]);
@@ -49,6 +50,12 @@ function Calendar() {
               className="calendar__add-person"
               onClick={() => {
                 navigate("/create/person/");
+              }}
+            />
+            <PiListPlusFill
+              className="calendar__add-serviceblock"
+              onClick={() => {
+                navigate("/create/serviceblock/");
               }}
             />
           </div>

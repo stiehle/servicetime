@@ -75,11 +75,13 @@
     overflow-x: auto;
   }
 
-  &__add-person {
+  &__add-person,
+  &__add-serviceblock {
     cursor: pointer;
   }
 
-  &__add-person:hover {
+  &__add-person:hover,
+  &__add-serviceblock:hover {
     // color: white;
     fill: #51ff00;
   }

@@ -33,6 +33,13 @@ export type ServiceBlock = {
   time_of_action_start: string | null;
   time_period_of: string | null;
   time_period_util: string | null;
+  service_field: { field_of_app: number; service_block: number }[];
+  // service_field?: { field_of_app: number; service_block: number }[];
+};
+
+export type Service_Field = {
+  field_of_app: number;
+  service_block: number;
 };
 
 export type FieldOFApplication = {

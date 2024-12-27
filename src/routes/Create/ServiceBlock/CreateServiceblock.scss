@@ -1,0 +1,20 @@
+@use "/src/styles/colors" as *;
+
+.create-serviceblock {
+  &__back {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    // inset: 5%;
+    background-color: #3061a09a;
+  }
+
+  &__input {
+    position: absolute;
+    height: 80%;
+    width: 80%;
+    inset: 10%;
+    background-color: #ffffff;
+    z-index: 1;
+  }
+}

@@ -8,6 +8,7 @@ import PersonContextProvider from "./context/PersonContextProvider";
 import ServiceBlockProvider from "./context/ServiceBlockProvider";
 import EditServiceBlock from "./routes/Edit/ServiceBlock/EditServiceBlock";
 import FieldOfAppProvider from "./context/FieldOfAppContextProvider";
+import CreateNewServiceblock from "./routes/Create/ServiceBlock/CreateServiceblock";
 
 function App() {
   const router = createBrowserRouter(
@@ -20,6 +21,7 @@ function App() {
           { path: "/edit/person/:itemId", element: <EditPerson /> },
           { path: "/edit/serviceblock/:itemId", element: <EditServiceBlock /> },
           { path: "/create/person", element: <CreateNewPerson /> },
+          { path: "/create/serviceblock", element: <CreateNewServiceblock /> },
         ],
       },
     ],
