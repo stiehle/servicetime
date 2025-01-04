@@ -1,4 +1,6 @@
 import Logo from "../Logo/Logo";
+// import Serviceblock from "../Serviceblock/Serviceblock";
+import ServiceblockOpen from "../ServiceblockOpen/ServiceblockOpen";
 import "./Sidebar.scss";
 
 function Sidebar() {
@@ -7,16 +9,11 @@ function Sidebar() {
       <div className="sidebar__logo">
         <Logo />
       </div>
+      <div className="sidebar__header">
+        <h3>zu Planen</h3>
+      </div>
       <div className="sidebar__items">
-        <div className="sidebar__items-text">
-          <h3>zu Planen</h3>
-        </div>
-        <div className="sidebar__items-test">
-          <p>items</p>
-        </div>
-        <div className="sidebar__items-test">
-          <p>items</p>
-        </div>
+        <ServiceblockOpen />
       </div>
     </div>
   );

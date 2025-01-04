@@ -4,7 +4,7 @@ import { ValidationError } from "../../types/Validation";
 
 type DateInputProps = {
   value: string;
-  onChange: ChangeEventHandler<HTMLInputElement>;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
   id: string;
   error: ValidationError;
   name: string;

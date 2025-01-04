@@ -14,40 +14,62 @@ import TimeInput from "../Timeinput.tsx/Timeinput";
 import { CgAdd } from "react-icons/cg";
 import { HiComputerDesktop, HiWrenchScrewdriver } from "react-icons/hi2";
 import { IoFlash } from "react-icons/io5";
+import { supabase } from "../../database/supabase";
+import { NewPersonContext } from "../../context/PersonContextProvider";
 
 type ServiceProp = {
   serviceblock: ServiceBlock | null;
+  newblock?: boolean;
 };
 
-function ServiceblockForm({ serviceblock }: ServiceProp) {
+function ServiceblockForm({ serviceblock, newblock }: ServiceProp) {
   const [newFieldOfApp, setNewFieldOfApp] = useState<number[]>([]);
 
   useEffect(() => {
     if (serviceblock) {
       setFieldOfApplication();
+    } else {
+      if (newblock === true) {
+        createNewServiceblock();
+        newblock = false;
+      }
+      // createNewServiceblock();
     }
   }, []);
 
+  const { persons } = useContext(NewPersonContext);
+
   // console.log(serviceblock, serviceblock?.service_field);
   const { fieldOfApplication } = useContext(NewFieldOfAppContext);
-  const { deleteServiceblock, saveUpdatedServiceBlock, saveNewServiceBlock } = useContext(NewServiceBlockContext);
+  const { serviceBlockData, setServiceBlockData, deleteServiceblock, saveUpdatedServiceBlock } = useContext(NewServiceBlockContext);
   const navigate = useNavigate();
   // console.log(fieldOfApplication);
 
-  const customer = useFormInput(serviceblock ? String(serviceblock.customer) : "", false);
-  const location = useFormInput(serviceblock ? String(serviceblock.location) : "", false);
-  const unit = useFormInput(serviceblock ? String(serviceblock.unit) : "", false);
-  const action = useFormInput(serviceblock ? String(serviceblock.action) : "", false);
-  const note = useFormInput(serviceblock ? String(serviceblock.note) : "", false);
-  const communication = useFormInput(serviceblock ? String(serviceblock.communication) : "", false);
-  const technician = useFormInput(serviceblock ? String(serviceblock.technician) : "", false);
-  const priority = useFormInput(serviceblock ? String(serviceblock.priority) : "", false);
+  const customer = useFormInput(serviceblock && serviceblock.customer, false);
+  // const customer = useFormInput(serviceblock ? (serviceblock === null ? "" : serviceblock.customer) : "", false);
+  const location = useFormInput(serviceblock && serviceblock.location, false);
+  const unit = useFormInput(serviceblock && serviceblock.unit, false);
+  const action = useFormInput(serviceblock && serviceblock.action, false);
+  const note = useFormInput(serviceblock && serviceblock.note, false);
+  const communication = useFormInput(serviceblock && serviceblock.communication, false);
+  const technician = useFormInput(serviceblock ? (serviceblock.technician === null ? "" : String(serviceblock.technician)) : "", false);
+  const priority = useFormInput(serviceblock ? (serviceblock.priority === null ? "" : String(serviceblock.priority)) : "", false);
 
-  const dateOfAction = useFormInput(serviceblock ? serviceblock.date_of_action : "", false);
-  const timeOfActionStart = useFormInput(serviceblock ? serviceblock.time_of_action_start : "", false);
-  const timeOfActionEnd = useFormInput(serviceblock ? serviceblock.time_of_action_end : "", false);
-  const timePeriodOf = useFormInput(serviceblock ? serviceblock.time_period_of : "", false);
-  const timePeriodUtil = useFormInput(serviceblock ? serviceblock.time_period_util : "", false);
+  const dateOfAction = useFormInput(serviceblock && serviceblock.date_of_action, false);
+  const timeOfActionStart = useFormInput(serviceblock && serviceblock.time_of_action_start, false);
+  const timeOfActionEnd = useFormInput(serviceblock && serviceblock.time_of_action_end, false);
+  const timePeriodOf = useFormInput(serviceblock && serviceblock.time_period_of, false);
+  const timePeriodUtil = useFormInput(serviceblock && serviceblock.time_period_util, false);
+
+  function getPersonFullName(personId: number) {
+    const name = persons.find((name) => name.id === personId);
+    if (name) {
+      console.log(name.first_name);
+      return name.first_name + " " + name.last_name;
+    } else {
+      return "";
+    }
+  }
 
   function cancelForm() {
     navigate("/");
@@ -77,20 +99,6 @@ function ServiceblockForm({ serviceblock }: ServiceProp) {
     setNewFieldOfApp([...newServiceField]);
   }
 
-  // function setFieldOfApplication() {
-  //   const newServiceField: number[] = [];
-
-  //   if (serviceblock) {
-  //     if (serviceblock.service_field) {
-  //       serviceblock.service_field.map((x) => {
-  //         // console.log(x.field_of_app);
-  //         newServiceField.push(x.field_of_app);
-  //       });
-  //     }
-  //   }
-  //   setNewFieldOfApp(newServiceField);
-  // }
-
   function setFieldOfApplication() {
     const newServiceField: number[] = [];
 
@@ -111,6 +119,28 @@ function ServiceblockForm({ serviceblock }: ServiceProp) {
     });
     console.log(newField);
     return newField;
+  }
+
+  function createNewServiceblock() {
+    const newServiceblock = async () => {
+      const { data, error } = await supabase.from("service_block").insert({}).select();
+      if (error) {
+        console.log(error);
+      }
+
+      if (data) {
+        console.log(data, data[0].id);
+        const newData = {
+          ...data[0],
+          service_field: [],
+        };
+        console.log(newData);
+        setServiceBlockData([...serviceBlockData, newData]);
+
+        navigate("/edit/serviceblock/" + data[0].id);
+      }
+    };
+    newServiceblock();
   }
 
   function saveServiceblock() {
@@ -136,30 +166,15 @@ function ServiceblockForm({ serviceblock }: ServiceProp) {
         time_period_util: timePeriodUtil.value,
         service_field: getFieldOfApp(Number(serviceblock.id)),
       };
+
+      // if (newServiceblock.technician === 0) newServiceblock.technician = null;
+      // if (newServiceblock.date_of_action === "") newServiceblock.date_of_action = null;
+
       console.log(newServiceblock);
       saveUpdatedServiceBlock(newServiceblock);
 
       navigate("/");
-    } else {
-      const newServiceblock = {
-        action: action.value,
-        unit: unit.value,
-        communication: communication.value,
-        customer: customer.value,
-        date_of_action: dateOfAction.value,
-        location: location.value,
-        note: note.value,
-        priority: Number(priority.value),
-        technician: Number(technician.value),
-        time_of_action_end: timeOfActionEnd.value,
-        time_of_action_start: timeOfActionStart.value,
-        time_period_of: timePeriodOf.value,
-        time_period_util: timePeriodUtil.value,
-        service_field: [],
-      };
-
-      console.log(newServiceblock);
-      saveNewServiceBlock(newServiceblock);
+      // cancelForm();
     }
   }
 
@@ -235,14 +250,14 @@ function ServiceblockForm({ serviceblock }: ServiceProp) {
         />
         <TextInput value={action.value} onChange={action.handleInputChangeEvent} error={action.error} id={"action"} name={"Aufgaben"} />
         <div className="serviceblock-form__input-wrapper">
-          <TextInput
+          {/* <TextInput
             value={technician.value}
             onChange={technician.handleInputChangeEvent}
             error={technician.error}
             id={"technician"}
             name={"Service-Techniker"}
-            size={"long"}
-          />
+            size={"middle"}
+          /> */}
           <TextInput value={unit.value} onChange={unit.handleInputChangeEvent} error={unit.error} id={"unit"} name={"Anlagen Nummer"} size={"middle"} />
           <TextInput
             value={priority.value}
@@ -254,6 +269,24 @@ function ServiceblockForm({ serviceblock }: ServiceProp) {
           />
         </div>
         <TextInput value={note.value} onChange={note.handleInputChangeEvent} error={note.error} id={"note"} name={"Bemerkungen"} />
+        <div className="serviceblock-form__input-wrapper">
+          <TextInput
+            value={technician.value}
+            onChange={technician.handleInputChangeEvent}
+            error={technician.error}
+            id={"technician"}
+            name={"Nr."}
+            size={"short"}
+          />
+          <TextInput
+            value={getPersonFullName(Number(technician.value))}
+            onChange={technician.handleInputChangeEvent}
+            error={technician.error}
+            id={"name"}
+            name={"Name"}
+            size={"long"}
+          />
+        </div>
 
         <div className="serviceblock-form__input-wrapper">
           <DateInput

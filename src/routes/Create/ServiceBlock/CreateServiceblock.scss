@@ -1,20 +1,24 @@
 @use "/src/styles/colors" as *;
 
 .create-serviceblock {
-  &__back {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    // inset: 5%;
-    background-color: #3061a09a;
-  }
+  display: none;
 
-  &__input {
-    position: absolute;
-    height: 80%;
-    width: 80%;
-    inset: 10%;
-    background-color: #ffffff;
-    z-index: 1;
-  }
+  // &__back {
+  //   position: absolute;
+  //   height: 100%;
+  //   width: 100%;
+  //   // inset: 5%;
+  //   background-color: #3061a09a;
+  //   visibility: hidden;
+  // }
+
+  // &__input {
+  //   position: absolute;
+  //   height: 80%;
+  //   width: 80%;
+  //   inset: 10%;
+  //   background-color: #ffffff;
+  //   visibility: hidden;
+  //   z-index: -1;
+  // }
 }

@@ -20,6 +20,7 @@ function App() {
         children: [
           { path: "/edit/person/:itemId", element: <EditPerson /> },
           { path: "/edit/serviceblock/:itemId", element: <EditServiceBlock /> },
+
           { path: "/create/person", element: <CreateNewPerson /> },
           { path: "/create/serviceblock", element: <CreateNewServiceblock /> },
         ],

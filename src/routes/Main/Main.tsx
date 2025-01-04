@@ -8,6 +8,7 @@ function Main() {
   return (
     <div className="main">
       <Outlet />
+
       <div className="main__wrapper-view">
         {/* <Outlet /> */}
 
@@ -22,7 +23,7 @@ function Main() {
         </div>
 
         <div className="main__footer">
-          <h3>Footer</h3>
+          <p>Footer</p>
         </div>
       </div>
     </div>

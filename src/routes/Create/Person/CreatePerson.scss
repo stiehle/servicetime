@@ -11,9 +11,9 @@
 
   &__input {
     position: absolute;
-    height: 80%;
-    width: 80%;
-    inset: 10%;
+    height: fit-content;
+    width: 50%;
+    inset: 25%;
     background-color: #ffffff;
     z-index: 1;
   }

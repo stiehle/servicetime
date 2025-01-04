@@ -61,8 +61,9 @@ function Serviceblock() {
               return (
                 <div key={day} className="serviceblock__day">
                   <div className="serviceblock__head">
-                    <h6>{person.id + "-" + `${new Date(day).getDate()}`}</h6>
+                    <h6>{`${new Date(day).getDate()}`}</h6>
                   </div>
+                  {/* <div className="serviceblock__head"><h6>{person.id + "-" + `${new Date(day).getDate()}`}</h6></div> */}
 
                   {searchServiceBlocksPerDay(person.id, day).map((block) => {
                     return (

@@ -56,6 +56,7 @@ function Calendar() {
               className="calendar__add-serviceblock"
               onClick={() => {
                 navigate("/create/serviceblock/");
+                // navigate("/edit/serviceblock/");
               }}
             />
           </div>

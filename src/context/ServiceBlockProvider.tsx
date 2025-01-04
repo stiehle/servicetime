@@ -3,17 +3,23 @@ import { supabase } from "../database/supabase";
 // import { Tables } from "../types/database.types";
 
 import { ServiceBlock } from "../types/person";
+import { spliceServiceBlock } from "../utils/serviceblock-help";
+// import { useNavigate } from "react-router-dom";
 
 export const NewServiceBlockContext = createContext<{
   serviceBlockData: ServiceBlock[];
+  setServiceBlockData: (serviceBlockData: ServiceBlock[]) => void;
   deleteServiceblock: (selectedServiceblock: ServiceBlock) => void;
   saveUpdatedServiceBlock: (serviceBlock: ServiceBlock) => void;
-  saveNewServiceBlock: (serviceBlock: {}) => void;
+  // saveNewServiceBlock: (serviceBlock: {}) => {};
 }>({
   serviceBlockData: [],
   deleteServiceblock: function () {},
   saveUpdatedServiceBlock: function () {},
-  saveNewServiceBlock: function () {},
+  setServiceBlockData: function () {},
+  // saveNewServiceBlock: function () {
+  //   return {};
+  // },
 });
 
 // type Props = {
@@ -87,49 +93,65 @@ function ServiceBlockProvider({ children }: { children: ReactNode }) {
     setServiceBlockData([...newData]);
   }
 
-  function spliceServiceBlock(serviceBlock: ServiceBlock) {
-    const selectServiceBlock = (({
-      action,
-      unit,
-      communication,
-      customer,
-      date_of_action,
-      location,
-      note,
-      priority,
-      technician,
-      time_of_action_end,
-      time_of_action_start,
-      time_period_of,
-      time_period_util,
-    }) => ({
-      action,
-      unit,
-      communication,
-      customer,
-      date_of_action,
-      location,
-      note,
-      priority,
-      technician,
-      time_of_action_end,
-      time_of_action_start,
-      time_period_of,
-      time_period_util,
-    }))(serviceBlock);
+  // function spliceServiceBlock(serviceBlock: ServiceBlock) {
+  //   const selectServiceBlock = (({
+  //     action,
+  //     unit,
+  //     communication,
+  //     customer,
+  //     date_of_action,
+  //     location,
+  //     note,
+  //     priority,
+  //     technician,
+  //     time_of_action_end,
+  //     time_of_action_start,
+  //     time_period_of,
+  //     time_period_util,
+  //   }) => ({
+  //     action,
+  //     unit,
+  //     communication,
+  //     customer,
+  //     date_of_action,
+  //     location,
+  //     note,
+  //     priority,
+  //     technician,
+  //     time_of_action_end,
+  //     time_of_action_start,
+  //     time_period_of,
+  //     time_period_util,
+  //   }))(serviceBlock);
 
-    const selectServiceField = (({ service_field }) => ({ service_field }))(serviceBlock);
+  //   const selectServiceField = (({ service_field }) => ({ service_field }))(serviceBlock);
 
-    const check = ["technician", "date_of_action", "time_of_action_end", "time_of_action_start", "time_period_of", "time_period_util"];
-    check.map((key) => {
-      if (selectServiceBlock[key as keyof typeof selectServiceBlock] === "" || selectServiceBlock[key as keyof typeof selectServiceBlock] === 0) {
-        console.log("ok", key);
-        selectServiceBlock[key as keyof typeof selectServiceBlock] = null;
-      }
-    });
+  //   // const check = ["technician", "date_of_action", "time_of_action_end", "time_of_action_start", "time_period_of", "time_period_util"];
+  //   // check.map((key) => {
+  //   //   if (selectServiceBlock[key as keyof typeof selectServiceBlock] === "" || selectServiceBlock[key as keyof typeof selectServiceBlock] === 0) {
+  //   //     console.log("ok", key);
+  //   //     selectServiceBlock[key as keyof typeof selectServiceBlock] = null;
+  //   //   }
+  //   // });
 
-    return { selectServiceBlock, selectServiceField };
-  }
+  //   const check: Array<keyof typeof selectServiceBlock> = [
+  //     "technician",
+  //     "date_of_action",
+  //     "time_of_action_end",
+  //     "time_of_action_start",
+  //     "time_period_of",
+  //     "time_period_util",
+  //   ];
+
+  //   check.map((key) => {
+  //     if (selectServiceBlock[key] === "" || selectServiceBlock[key] === 0) {
+  //       console.log("ok", key);
+  //       selectServiceBlock[key] = null;
+  //     }
+  //   });
+
+  //   return { selectServiceBlock, selectServiceField };
+  // }
 
   function saveUpdatedServiceBlock(serviceBlock: ServiceBlock) {
     // const { serviceBlockData } = useContext(NewServiceBlockContext);
@@ -141,13 +163,16 @@ function ServiceBlockProvider({ children }: { children: ReactNode }) {
       if (error) {
         console.log(error);
       }
+      // fetchServiceBlockData();
     };
 
-    const { selectServiceBlock, selectServiceField } = spliceServiceBlock(serviceBlock);
+    const { selectServiceBlock, selectServiceField, newServiceblock } = spliceServiceBlock(serviceBlock);
+    console.log(selectServiceBlock);
     update();
     // fetchServiceBlockData();
 
-    const updatedState = serviceBlockData.map((block) => (block.id === serviceBlock.id ? serviceBlock : block));
+    const updatedState = serviceBlockData.map((block) => (block.id === serviceBlock.id ? newServiceblock : block));
+    console.log(updatedState);
     setServiceBlockData([...updatedState]);
 
     let arrayPrev: number[] = [];
@@ -187,12 +212,28 @@ function ServiceBlockProvider({ children }: { children: ReactNode }) {
     }
   }
 
-  function saveNewServiceBlock(serviceBlock: {}) {
-    console.log(serviceBlock);
-  }
+  // function saveNewServiceBlock(serviceblock: {}): {} {
+  //   console.log(serviceblock);
+  //   const newServiceblock = async () => {
+  //     const { data, error } = await supabase.from("service_block").insert({}).select();
+  //     if (error) {
+  //       console.log(error);
+  //     }
+
+  //     if (data) {
+  //       console.log(data);
+  //       return newServiceblock();
+  //       fetchServiceBlockData();
+
+  //       return data;
+  //     }
+  //   };
+
+  //   return newServiceblock();
+  // }
 
   return (
-    <NewServiceBlockContext.Provider value={{ serviceBlockData, deleteServiceblock, saveUpdatedServiceBlock, saveNewServiceBlock }}>
+    <NewServiceBlockContext.Provider value={{ serviceBlockData, setServiceBlockData, deleteServiceblock, saveUpdatedServiceBlock }}>
       {children}
     </NewServiceBlockContext.Provider>
   );
