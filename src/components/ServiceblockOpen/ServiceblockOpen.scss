@@ -3,8 +3,7 @@
   &__info {
     background-color: #535350;
     border-radius: 10px;
-    height: 7rem;
-    padding: 0.2rem;
+    height: 5rem;
     border: 1px solid #ffffff;
     font-size: 1rem;
     color: #ffffff;
@@ -17,7 +16,10 @@
     // overflow: hidden;
   }
   &__customer {
-    border-bottom: 1px solid #fffb00;
+    // border-bottom: 1px solid #fffb00;
     width: fit-content;
+    text-decoration: underline;
+    text-decoration-color: #fffb00;
+    text-decoration-thickness: 2px;
   }
 }

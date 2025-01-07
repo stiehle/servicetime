@@ -6,7 +6,6 @@ import userManagementReducer, { PersonManagementState } from "../hooks/personMan
 
 export const NewPersonContext = createContext<{
   persons: PersonManagementState;
-
   addNewPerson: (newPerson: ServicePerson) => void;
   updatePerson: (newPerson: ServicePerson) => void;
   deletePerson: (newPerson: ServicePerson) => void;

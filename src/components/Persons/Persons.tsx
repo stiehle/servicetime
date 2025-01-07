@@ -52,7 +52,7 @@ function Persons() {
             <div className="person__wrapper">
               <div className="person__name">{person.first_name}</div>
               <div className="person__name">{person.last_name}</div>
-              <div className="person__number">{person.id + ", " + person.personal_nr}</div>
+              <div className="person__number">{person.personal_nr}</div>
             </div>
             <div className="person__techfield">{createTechField(person.tech_field)}</div>
           </div>
