@@ -7,8 +7,73 @@
   // padding-right: 0.3rem;
 
   &__menu {
+    // position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
     min-height: 4rem;
     background-color: #7e746e;
+  }
+
+  &__create {
+    display: inherit;
+    padding: 0.5rem;
+    gap: 1rem;
+  }
+
+  &__one-day {
+    display: inherit;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    background-color: #535350;
+    // margin: auto 0;
+    cursor: pointer;
+    margin: 0 auto;
+    color: #ffffff;
+    font-size: 1.4rem;
+
+    &--left {
+      border-radius: 45px 45px 45px 0;
+    }
+    &--right {
+      border-radius: 45px 45px 0 45px;
+    }
+  }
+
+  &__number-of-days {
+    display: inherit;
+    // height: 100%;
+    gap: 1rem;
+    // color: #c50f0f;
+    // background-color: transparent;
+  }
+
+  &__button {
+    display: inherit;
+    justify-content: center;
+    font-size: 1.8rem;
+    background-color: red;
+    border-top: 10px solid #771f1f;
+    background-color: #535350;
+    // border-radius: 5px 5px 10px 10px;
+    border-radius: 8px;
+    margin: 0 auto;
+    width: 3rem;
+    color: #ffffff;
+    cursor: pointer;
+  }
+
+  &__button:hover,
+  &__one-day:hover {
+    background-color: lighten(#535350, 80%);
+    color: #000000;
+  }
+
+  &__setup {
+    background-color: #51ff00;
   }
 
   &__head {
@@ -87,7 +152,8 @@
   &__add-person:hover,
   &__add-serviceblock:hover {
     // color: white;
-    fill: #51ff00;
+    fill: lighten(#535350, 60%);
+    // background-color: darken(#535350, 10%);
   }
 
   &__days {
