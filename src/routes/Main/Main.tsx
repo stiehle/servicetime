@@ -3,6 +3,7 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 import "./Main.scss";
 import Calendar from "../../components/Calendar/Calendar";
 import { Outlet } from "react-router-dom";
+import Footer from "../../components/Footer/Footer";
 
 function Main() {
   return (
@@ -21,9 +22,8 @@ function Main() {
             {/* <Outlet /> */}
           </div>
         </div>
-
         <div className="main__footer">
-          <p>Footer</p>
+          <Footer />
         </div>
       </div>
     </div>

@@ -40,7 +40,11 @@
   }
 
   &__footer {
-    height: 2rem;
+    display: flex;
+    flex-direction: column;
+    // align-items: center;
+    justify-content: center;
+    height: fit-content;
     background-color: #646462;
     color: #ffffff;
   }

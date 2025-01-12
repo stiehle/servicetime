@@ -1,3 +1,5 @@
+@use "sass:color";
+
 .calendar {
   display: flex;
   flex-direction: column;
@@ -68,7 +70,8 @@
 
   &__button:hover,
   &__one-day:hover {
-    background-color: lighten(#535350, 80%);
+    // background-color: lighten(#535350, 80%);
+    background-color: color.adjust(#535350, $lightness: 80%);
     color: #000000;
   }
 
@@ -152,7 +155,8 @@
   &__add-person:hover,
   &__add-serviceblock:hover {
     // color: white;
-    fill: lighten(#535350, 60%);
+    // fill: lighten(#535350, 60%);
+    fill: color.adjust(#535350, $lightness: 80%);
     // background-color: darken(#535350, 10%);
   }
 

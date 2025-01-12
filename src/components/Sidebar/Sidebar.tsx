@@ -12,8 +12,10 @@ function Sidebar() {
       <div className="sidebar__header">
         <h3>zu Planen</h3>
       </div>
-      <div className="sidebar__items">
-        <ServiceblockOpen />
+      <div className="sidebar__item-wrapper">
+        <div className="sidebar__items">
+          <ServiceblockOpen />
+        </div>
       </div>
     </div>
   );

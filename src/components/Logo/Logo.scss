@@ -1,4 +1,34 @@
 .logo {
-  background-color: #a2aaaa;
-  height: 4rem;
+  width: 100%;
+  background-color: #535350;
+  padding: 1.5rem;
+
+  &__placeholder {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__name {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    height: 40px;
+    background-color: #535350;
+    color: #ffffff;
+    font-size: 1.4rem;
+    font-weight: 800;
+    padding: 1rem;
+
+    &--left {
+      border-radius: 45px 45px 45px 0;
+      border: 2px solid #ffffff;
+    }
+
+    &--right {
+      border-radius: 45px 45px 0 45px;
+      color: rgb(255, 251, 0);
+      background-color: #976a59;
+      border: 2px solid #ffffff;
+    }
+  }
 }
