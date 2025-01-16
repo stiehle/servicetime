@@ -1,4 +1,5 @@
 @use "sass:color";
+@use "/src/styles/colors" as *;
 
 .calendar {
   display: flex;
@@ -15,7 +16,7 @@
     align-items: center;
     justify-content: space-between;
     min-height: 4rem;
-    background-color: #7e746e;
+    background-color: $background-color-menu;
   }
 
   &__create {
@@ -30,11 +31,11 @@
     justify-content: center;
     width: 45px;
     height: 45px;
-    background-color: #535350;
+    background-color: $button-primary;
     // margin: auto 0;
     cursor: pointer;
     margin: 0 auto;
-    color: #ffffff;
+    color: $primary-font-color;
     font-size: 1.4rem;
 
     &--left {
@@ -57,45 +58,39 @@
     display: inherit;
     justify-content: center;
     font-size: 1.8rem;
-    background-color: red;
-    border-top: 10px solid #771f1f;
-    background-color: #535350;
+    // background-color: red;
+    border-top: 10px solid $button-border-calendar-day;
+    background-color: $button-primary;
     // border-radius: 5px 5px 10px 10px;
     border-radius: 8px;
     margin: 0 auto;
     width: 3rem;
-    color: #ffffff;
+    color: $primary-font-color;
     cursor: pointer;
   }
 
   &__button:hover,
   &__one-day:hover {
     // background-color: lighten(#535350, 80%);
-    background-color: color.adjust(#535350, $lightness: 80%);
-    color: #000000;
+    background-color: color.adjust($button-primary, $lightness: 80%);
+    color: $secundary-font-color;
   }
 
-  &__setup {
-    background-color: #51ff00;
-  }
+  // &__setup {
+  //   background-color: #51ff00;
+  // }
 
   &__head {
     display: flex;
     flex-direction: row;
     height: fit-content;
-    background-color: #5c5c5c;
+    background-color: $primary-calendar-head;
     width: 100%;
     padding-right: 0.4rem;
   }
 
   &__head-info {
     min-width: 6rem;
-    // width: 15%;
-
-    // background-color: #a2d4c1;
-    background-color: #5c5c5c;
-    color: #fff8dc;
-    // padding: 0.5rem;
   }
 
   &__head-info-placeholder {
@@ -106,15 +101,12 @@
 
   &__head-date {
     width: 100%;
-    background-color: #5c5c5c;
+    background-color: $primary-calendar-head;
     // padding: 0 0.5rem;
   }
 
   &__body {
-    background-color: #ffffb7;
-    // width: 90%;
-    // height: 100%;
-    // height: 100%;
+    background-color: $primary-calendar-body;
   }
 
   &__wrapper {
@@ -127,14 +119,14 @@
     // margin: 1rem 0;
     scrollbar-width: none;
     // margin: 0 auto;
-    background-color: #6b5f5f;
+    background-color: $primary-calendar-body;
 
     padding-right: 0.4rem;
   }
 
   &__persons,
   &__body {
-    background-color: #6b5f5f;
+    background-color: $primary-calendar-body;
     height: fit-content;
     min-width: 6rem;
     // width: 15%;
@@ -156,7 +148,7 @@
   &__add-serviceblock:hover {
     // color: white;
     // fill: lighten(#535350, 60%);
-    fill: color.adjust(#535350, $lightness: 80%);
+    fill: color.adjust($button-primary, $lightness: 80%);
     // background-color: darken(#535350, 10%);
   }
 
@@ -177,23 +169,23 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: #ffffff;
-    background-color: #8f8872;
+    color: $primary-font-color;
+    background-color: $background-calendar-day;
     border-radius: 10px;
     height: fit-content;
-    border: 2px solid #ffffff;
+    border: 2px solid $primary-border-color;
     width: 100%;
     font-size: 0.8rem;
     margin: 0.5rem 0.2rem;
   }
 
   &__day--0 {
-    color: #913b3b;
+    color: $day--0;
     // border: 2px solid #ff0000;
   }
 
   &__day--6 {
-    color: #21354b;
+    color: $day--6;
     // border: 2px solid #ff0000;
   }
 
@@ -215,8 +207,8 @@
     font-size: 1rem;
     font-weight: 800;
 
-    &--color {
-      color: #c71818;
-    }
+    // &--color {
+    //   color: $day-weekday;
+    // }
   }
 }

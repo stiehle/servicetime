@@ -1,7 +1,7 @@
 import "./ServiceblockForm.scss";
 import { useContext, useEffect, useState } from "react";
 import { NewFieldOfAppContext } from "../../context/FieldOfAppContextProvider";
-import { Service_Field, ServiceBlock } from "../../types/person";
+import { Service_Field, ServiceBlock, ServicePerson } from "../../types/person";
 import { IconContext } from "react-icons";
 import { FaListAlt, FaRegTrashAlt } from "react-icons/fa";
 import { MdCancel, MdSaveAlt } from "react-icons/md";
@@ -263,8 +263,36 @@ function ServiceblockForm({ serviceblock, newblock }: ServiceProp) {
     // getTechnicianList();
   }
 
+  function getFilterdPersonList() {
+    console.log("Hello", newFieldOfApp, persons[0].tech_field);
+    const newPersonList: ServicePerson[] = [];
+    let fieldPers: number[] = [];
+
+    persons.map((pers) => {
+      // let check = 0;
+
+      pers.tech_field.map((field) => {
+        if (newFieldOfApp.includes(field.field_of_app)) {
+          fieldPers.push(field.field_of_app);
+        }
+      });
+
+      //let symDifference = arrayPrev.filter((x) => !arraySelected.includes(x)).concat(arraySelected.filter((x) => !arrayPrev.includes(x)));
+
+      // newPersonList.push(pers);
+      const diff = newFieldOfApp.filter((x) => !fieldPers.includes(x));
+      if (diff.length === 0) newPersonList.push(pers);
+      console.log(diff, fieldPers, newFieldOfApp);
+      fieldPers = [];
+      // if (check != pers.tech_field.length) newPersonList.push(pers);
+    });
+    console.log(newPersonList);
+    return newPersonList;
+  }
+
   function getTechnicianList() {
-    return persons.map((pers) => {
+    // persons.map getFilterdPersonList();
+    return getFilterdPersonList().map((pers) => {
       return (
         <div
           className={"serviceblock-form-sidebar__technician" + `${pers.id === selectTechnician ? " serviceblock-form-sidebar__technician--select" : ""}`}

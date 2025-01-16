@@ -1,8 +1,10 @@
+@use "/src/styles/colors" as *;
+
 .sidebar {
   // margin: 0rem auto;
   display: flex;
   flex-direction: column;
-  background-color: #7e746e;
+  background-color: $sidebar-background-color;
   height: 100%;
   // max-width: 250px;
 
@@ -16,7 +18,7 @@
   }
 
   &__items {
-    background-color: #7e746e;
+    // background-color: transparent;
     display: flex;
     flex-direction: column;
     // justify-content: center;
@@ -27,14 +29,14 @@
 
   &__header {
     margin: 0.5rem auto;
-    color: #ffffff;
+    color: $primary-font-color;
   }
 
-  &__items-text {
-    border-bottom: 2px solid #6054ca;
-    width: 60%;
-    text-align: center;
-  }
+  // &__items-text {
+  //   border-bottom: 2px solid $sidebar-items-text-border;
+  //   width: 2%;
+  //   text-align: center;
+  // }
 }
 
 // @media only screen and (max-width: 500px) {

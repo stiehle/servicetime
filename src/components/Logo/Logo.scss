@@ -1,6 +1,8 @@
+@use "/src/styles/colors" as *;
+
 .logo {
   width: 100%;
-  background-color: #535350;
+  background-color: $logo-background-color;
   padding: 1.5rem;
 
   &__placeholder {
@@ -13,22 +15,23 @@
     align-items: center;
     width: fit-content;
     height: 40px;
-    background-color: #535350;
-    color: #ffffff;
+    background-color: $logo-background-color;
+    color: $primary-font-color;
     font-size: 1.4rem;
     font-weight: 800;
     padding: 1rem;
+    border: 2px solid $primary-border-color;
 
     &--left {
       border-radius: 45px 45px 45px 0;
-      border: 2px solid #ffffff;
+      // border: 2px solid $primary-border-color;
     }
 
     &--right {
       border-radius: 45px 45px 0 45px;
-      color: rgb(255, 251, 0);
-      background-color: #976a59;
-      border: 2px solid #ffffff;
+      color: $logo-name-right-color;
+      background-color: $logo-name-right-background-color;
+      // border: 2px solid $primary-border-color;
     }
   }
 }

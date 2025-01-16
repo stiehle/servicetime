@@ -74,12 +74,13 @@ function Serviceblock() {
                           onClick={() => serviceblockSelect(person.id, day, block.id)}>
                           <p className="serviceblock__work-id">SB{block.id}</p>
                           <hr />
+
+                          <p className="serviceblock__work-customer">{block.customer}</p>
                           <p className="serviceblock__work-time">
                             {getNewTime(block.time_of_action_start, block.time_of_action_end)}
                             {/* {String(block.time_of_action_start).substring(0, 5) + "-"}
                             {String(block.time_of_action_end).substring(0, 5)} */}
                           </p>
-                          <p className="serviceblock__work-customer">{block.customer}</p>
                         </div>
                       )
                     );

@@ -1,3 +1,5 @@
+@use "/src/styles/colors" as *;
+
 .time-input {
   display: flex;
   flex-direction: column;
@@ -11,15 +13,15 @@
   }
 
   &__label {
-    color: coral;
-    background-color: beige;
+    color: $date-input-label;
+    background-color: $date-input-label-background;
     width: fit-content;
     border-radius: 10px;
     padding: 0 0.5rem;
   }
 
   &__error {
-    color: crimson;
+    color: date-input-label-error;
     font-size: 1rem;
   }
 }

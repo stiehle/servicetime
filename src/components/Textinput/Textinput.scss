@@ -1,3 +1,5 @@
+@use "/src/styles/colors" as *;
+
 .text-input {
   display: flex;
   flex-direction: column;
@@ -28,15 +30,15 @@
   }
 
   &__label {
-    color: #fff9f9;
-    background-color: #225cd8;
+    color: $text-input-label-font-color;
+    background-color: $text-input-label-background-color;
     width: fit-content;
     border-radius: 10px;
     padding: 0 0.5rem;
   }
 
   &__error {
-    color: #dc143c;
+    color: $date-input-label-error;
     font-size: 1rem;
   }
 }

@@ -1,3 +1,5 @@
+@use "/src/styles/colors" as *;
+
 .footer {
   &__items {
     display: flex;
@@ -7,12 +9,12 @@
     gap: 1rem;
 
     & a {
-      color: #000000;
-      border: 1px solid #000000;
+      color: $secundary-font-color;
+      border: 1px solid $main-border-color;
       border-radius: 15px 15px 15px 0;
       padding: 0.2rem 2rem;
       margin: 0.2rem;
-      background-color: #696969;
+      background-color: $footer-background-color;
     }
   }
 }

@@ -1,10 +1,12 @@
+@use "/src/styles/colors" as *;
+
 .edit-serviceblock {
   &__back {
     position: absolute;
     height: 100%;
     width: 100%;
     // inset: 5%;
-    background-color: #00000080;
+    background-color: $edit-person-background-color;
   }
 
   &__input {
@@ -15,7 +17,7 @@
     // inset: 10%;
     margin: 5% 20%;
 
-    background-color: #ffffff;
+    background-color: $main-background-color;
     z-index: 1;
     overflow-y: auto;
   }

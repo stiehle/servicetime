@@ -6,7 +6,7 @@
     height: 100%;
     width: 100%;
     // inset: 5%;
-    background-color: #3061a09a;
+    background-color: $create-person-background-color;
   }
 
   &__input {
@@ -14,7 +14,7 @@
     height: fit-content;
     width: 50%;
     inset: 25%;
-    background-color: #ffffff;
+    background-color: $main-background-color;
     z-index: 1;
   }
 }

@@ -1,3 +1,5 @@
+@use "/src/styles/colors" as *;
+
 .person {
   display: flex;
   flex-direction: column;
@@ -11,10 +13,10 @@
     justify-content: center;
     align-items: center;
     height: 12rem;
-    background-color: #3f3939;
+    background-color: $person-item-background-color;
     width: 90%;
     // overflow-y: auto;
-    color: #ffffff;
+    color: $primary-font-color;
     border-radius: 20px;
     cursor: pointer;
 
@@ -34,7 +36,7 @@
   }
 
   &__number {
-    color: #ffffff;
+    color: $primary-font-color;
     font-size: 0.8rem;
     // margin: 0.2rem;
   }
@@ -56,21 +58,21 @@
     gap: 0.2rem;
 
     &--0 {
-      color: #000000;
+      color: $person-techfield--0;
     }
 
     &--1 {
-      color: #2f9aff;
+      color: $person-techfield--1;
     }
     &--2 {
-      color: #f1ef5b;
+      color: $person-techfield--2;
     }
 
     &--3 {
-      color: #008000;
+      color: $person-techfield--3;
     }
     &--4 {
-      color: #8c5fb6;
+      color: $person-techfield--4;
     }
   }
 }

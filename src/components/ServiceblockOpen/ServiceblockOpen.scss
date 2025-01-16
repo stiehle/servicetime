@@ -1,12 +1,14 @@
+@use "/src/styles/colors" as *;
+
 .serviceblock-open {
   width: 90%;
   &__info {
     background-color: #535350;
     border-radius: 10px;
     height: 5rem;
-    border: 1px solid #ffffff;
+    border: 1px solid $primary-border-color;
     font-size: 1rem;
-    color: #ffffff;
+    color: $primary-font-color;
     overflow-y: auto;
     scrollbar-width: none;
     padding: 0.5rem;

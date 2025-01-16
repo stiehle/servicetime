@@ -1,8 +1,10 @@
+@use "/src/styles/colors" as *;
+
 .person-form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  background-color: #e0d9d9;
+  background-color: $person-form-background-color;
   padding: 2rem;
 
   &__button {
@@ -22,12 +24,12 @@
 
   &__cancel-button,
   &__delete-button {
-    color: #2a43cf;
+    color: $menu-cancel-button;
     cursor: pointer;
   }
 
   &__delete-button {
-    color: #cf2a2a;
+    color: $menu-delete-button;
   }
 
   &__menu-wrapper {
@@ -42,7 +44,7 @@
   // flex-direction: column;
   width: 100%;
   height: fit-content;
-  background-color: #e9e5df;
+  background-color: $person-form-field-background-color;
 
   &__header {
     font-size: 1rem;
@@ -60,8 +62,8 @@
   &__item-note {
     display: flex;
     justify-content: center;
-    background-color: #ffffffcc;
-    border: 1px solid rgba(0, 0, 0, 0.8);
+    background-color: $main-background-color;
+    border: 1px solid $main-border-color;
     padding: 5px;
     font-size: 1.2rem;
     align-items: center;
@@ -70,8 +72,9 @@
   &__item-icon {
     display: flex;
     justify-content: center;
-    background-color: rgb(255, 255, 255);
-    border: 1px solid rgba(0, 0, 0, 0.8);
+    background-color: $main-background-color;
+    border: 1px solid $main-border-color;
+    // border: 1px solid rgba(0, 0, 0, 0.8);
     align-items: center;
   }
 
@@ -79,16 +82,21 @@
     justify-content: left;
   }
 
-  &__container:has(:hover) {
+  // &__container:has(:hover) {
+  //   cursor: pointer;
+  //   background-color: $person-form-hover-background-color;
+  // }
+
+  &__container:hover {
     cursor: pointer;
-    background-color: #2a43cf;
+    background-color: $person-form-hover-background-color;
   }
 
   &__icon {
-    color: #16c216;
+    color: $person-form-icon-color;
 
     &--unchecked {
-      color: #d14343;
+      color: $person-form-icon-unchecked-color;
     }
   }
 }
