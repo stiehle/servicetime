@@ -39,7 +39,7 @@ function PersonContextProvider({ children }: { children: ReactNode }) {
 
   function addNewPerson(newPerson: ServicePerson) {
     const addPerson = async () => {
-      const { data, error } = await supabase.from("service_technician").insert({
+      const { error } = await supabase.from("service_technician").insert({
         first_name: newPerson.first_name,
         last_name: newPerson.last_name,
         personal_nr: newPerson.personal_nr,
@@ -122,7 +122,7 @@ function PersonContextProvider({ children }: { children: ReactNode }) {
 
   function deletePerson(newPersonData: ServicePerson) {
     const deletePerson = async () => {
-      const { data, error } = await supabase.from("service_technician").delete().eq("id", newPersonData.id).select();
+      const { error } = await supabase.from("service_technician").delete().eq("id", newPersonData.id).select();
       if (error) {
         console.log(error);
       }

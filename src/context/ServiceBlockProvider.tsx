@@ -59,7 +59,7 @@ function ServiceBlockProvider({ children }: { children: ReactNode }) {
 
   function deleteServiceblock(selectedServiceblock: ServiceBlock) {
     const deleteServiceblockData = async () => {
-      const { data, error } = await supabase.from("service_block").delete().eq("id", selectedServiceblock.id).select();
+      const { error } = await supabase.from("service_block").delete().eq("id", selectedServiceblock.id).select();
       if (error) {
         console.log(error);
       }
