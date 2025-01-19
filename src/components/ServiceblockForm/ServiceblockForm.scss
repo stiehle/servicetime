@@ -9,7 +9,6 @@
   display: flex;
   flex-direction: column;
   min-width: 12rem;
-  // height: 100%;
   background-color: $serviceblock-sidebar-background-color;
   overflow-y: auto;
   scrollbar-width: none;
@@ -42,8 +41,6 @@
   padding: 1rem;
   width: 100%;
 
-  // overflow-y: auto;
-
   &__button {
     width: 10rem;
     height: fit-content;
@@ -55,7 +52,6 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    // background-color: #b1b1b1;
     padding: 0.5rem;
   }
 

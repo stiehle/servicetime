@@ -15,13 +15,11 @@ function Persons() {
   const { persons } = useContext(NewPersonContext);
 
   function personSelect(id: number) {
-    console.log("id:", id);
     navigate("/edit/person/" + id);
   }
 
   function createTechField(personTechField: TechField[]) {
     const iconStock = [<CgAdd />, <HiWrenchScrewdriver />, <IoFlash />, <HiComputerDesktop />, <FaListAlt />];
-    // console.log(personTechField);
 
     const sortedPersonTechField = personTechField.sort((A, B) => A.field_of_app - B.field_of_app);
 
@@ -34,10 +32,7 @@ function Persons() {
       return (
         <div key={field.field_of_app}>
           <IconContext.Provider value={{ size: "20px" }}>
-            <div className={"person__techfield--" + `${field.field_of_app}`}>
-              {selectIcon(field.field_of_app)}
-              {/* {field.field_of_app} */}
-            </div>
+            <div className={"person__techfield--" + `${field.field_of_app}`}>{selectIcon(field.field_of_app)}</div>
           </IconContext.Provider>
         </div>
       );

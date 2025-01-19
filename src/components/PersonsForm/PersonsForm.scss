@@ -18,7 +18,6 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    // background-color: #b1b1b1;
     padding: 0.5rem;
   }
 
@@ -40,21 +39,17 @@
 }
 
 .fieldofapplication {
-  // display: flex;
-  // flex-direction: column;
   width: 100%;
   height: fit-content;
   background-color: $person-form-field-background-color;
 
   &__header {
     font-size: 1rem;
-    // background-color: #86cc78;
   }
 
   &__container {
     display: grid;
     grid-template-columns: 4rem 12rem auto;
-    // background-color: #afc5d6;
     padding: 2px;
   }
 
@@ -74,18 +69,12 @@
     justify-content: center;
     background-color: $main-background-color;
     border: 1px solid $main-border-color;
-    // border: 1px solid rgba(0, 0, 0, 0.8);
     align-items: center;
   }
 
   &__item-note {
     justify-content: left;
   }
-
-  // &__container:has(:hover) {
-  //   cursor: pointer;
-  //   background-color: $person-form-hover-background-color;
-  // }
 
   &__container:hover {
     cursor: pointer;

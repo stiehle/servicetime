@@ -2,6 +2,7 @@
 
 .serviceblock-open {
   width: 90%;
+
   &__info {
     background-color: #535350;
     border-radius: 10px;
@@ -13,13 +14,9 @@
     scrollbar-width: none;
     padding: 0.5rem;
     cursor: pointer;
-
-    // overflow-x: hidden;
-    // scrollbar-width: none;
-    // overflow: hidden;
   }
+
   &__customer {
-    // border-bottom: 1px solid #fffb00;
     width: fit-content;
     text-decoration: underline;
     text-decoration-color: #fffb00;

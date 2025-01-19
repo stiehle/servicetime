@@ -2,19 +2,14 @@ import { useContext, useEffect, useState } from "react";
 import { useFormInput } from "../../hooks/useFormInput";
 import { ServicePerson } from "../../types/person";
 import TextInput from "../Textinput/Textinput";
-
 import "./PersonsForm.scss";
-// import { supabase } from "../../database/supabase";
-
 import { IconContext } from "react-icons";
 import { FaRegCheckCircle, FaRegTrashAlt } from "react-icons/fa";
 import { FaRegCircleXmark } from "react-icons/fa6";
-// import { PersonContext } from "../../context/PersonContext";
 import { useNavigate } from "react-router-dom";
 import { MdCancel, MdSaveAlt } from "react-icons/md";
 import { NewPersonContext } from "../../context/PersonContextProvider";
 import { NewFieldOfAppContext } from "../../context/FieldOfAppContextProvider";
-// import { NewFieldOfAppContext } from "../../context/FieldOfAppContextProvider";
 
 type PersonProp = {
   person: ServicePerson | null;
@@ -31,14 +26,12 @@ function PersonsForm({ person }: PersonProp) {
   useEffect(() => {
     if (person) {
       createNewFieldOfApplication();
-      // console.log(person);
     }
   }, []);
 
   const { addNewPerson, updatePerson, deletePerson } = useContext(NewPersonContext);
 
   const navigate = useNavigate();
-  // console.log(person);
   const [fieldOfApp, setFieldOfApp] = useState<FieldOFApp[]>([]);
 
   const { fieldOfApplication } = useContext(NewFieldOfAppContext);
@@ -56,7 +49,6 @@ function PersonsForm({ person }: PersonProp) {
   }
 
   function checkPersonFieldOfApplication(id: number) {
-    // console.log(id);
     if (person) {
       const found = person.tech_field.find((item) => {
         return item.field_of_app === id;
@@ -72,33 +64,7 @@ function PersonsForm({ person }: PersonProp) {
         return { note: "", checked: false };
       }
     } else return { note: "", checked: false };
-
-    //  console.log(found);
   }
-
-  // async function fetchFieldOfApplication() {
-  //   console.log("fetch");
-  //   const newFieldOfApp: FieldOFApp[] = [];
-  //   // const { data, error } = await supabase.from("service_technician").select("*");
-  //   const { data, error } = await supabase.from("field_of_application").select("*");
-
-  //   if (error) {
-  //     console.log(error);
-  //   }
-
-  //   if (data) {
-  //     data.map((item) => {
-  //       const check = checkPersonFieldOfApplication(item.id);
-  //       newFieldOfApp.push({
-  //         id: item.id,
-  //         type: item.type,
-  //         note: check.note,
-  //         checked: check.checked,
-  //       });
-  //     });
-  //   } else return;
-  //   setFieldOfApp(newFieldOfApp);
-  // }
 
   function createNewFieldOfApplication() {
     const newFieldOfApp: FieldOFApp[] = [];
@@ -118,7 +84,6 @@ function PersonsForm({ person }: PersonProp) {
   }
 
   function containerClick(id: number) {
-    // console.log("click", id);
     const newField: FieldOFApp[] = [...fieldOfApp];
 
     const found = newField.filter((item) => {
@@ -133,22 +98,15 @@ function PersonsForm({ person }: PersonProp) {
           item.checked = true;
         }
       });
-
-      //console.log(found);
     }
-    // console.log(found, fieldOfApp);
+
     setFieldOfApp(newField);
   }
 
   function savePersonData() {
-    // console.log("save");
-    // console.log(person);
-    // console.log(fieldOfApp);
-
     if (isValidInputs()) {
       function createFieldOfApp(newPerson: ServicePerson) {
         fieldOfApp.forEach((item) => {
-          // console.log(item);
           if (item.checked) {
             newPerson.tech_field.push({
               note: item.note,
@@ -162,7 +120,6 @@ function PersonsForm({ person }: PersonProp) {
       if (person) {
         const newPerson: ServicePerson = { ...person };
 
-        // console.log("new", newPerson);
         newPerson.tech_field = [];
 
         createFieldOfApp(newPerson);
@@ -171,11 +128,6 @@ function PersonsForm({ person }: PersonProp) {
         newPerson.last_name = lastName.value;
         newPerson.personal_nr = Number(personalNr.value);
 
-        console.log("new", newPerson);
-
-        // personsDispatch({ type: "UPDATE_PERSON", person: newPerson });
-
-        console.log("save Update Person");
         updatePerson(newPerson);
 
         navigate("/");
@@ -189,7 +141,7 @@ function PersonsForm({ person }: PersonProp) {
         };
 
         addNewPerson(newPerson);
-        console.log(newPerson);
+
         navigate("/");
       }
     }
@@ -203,7 +155,6 @@ function PersonsForm({ person }: PersonProp) {
     if (person) {
       const question = confirm("Soll diese Person wirklich gelöscht werden");
       if (question) {
-        // personsDispatch({ type: "REMOVE_PERSON", person: person });
         deletePerson(person);
         navigate("/");
       }
@@ -213,7 +164,6 @@ function PersonsForm({ person }: PersonProp) {
   }
 
   function showFieldOfApplication() {
-    //  console.log(person.technician_field_of_app);
     return (
       <div className="fieldofapplication">
         <div className="fieldofapplication__header">
@@ -238,10 +188,7 @@ function PersonsForm({ person }: PersonProp) {
                 <div className="fieldofapplication__item">
                   <p>{fields.type}</p>
                 </div>
-                <div className="fieldofapplication__item-note">
-                  {fields.note}
-                  {/* {fields.checked && ""} */}
-                </div>
+                <div className="fieldofapplication__item-note">{fields.note}</div>
               </div>
             </div>
           );

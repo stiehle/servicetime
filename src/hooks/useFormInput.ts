@@ -17,10 +17,8 @@ export function useFormInput(initialValue: string | null, required = false) {
 
     if (required) {
       if (inputValue === "") {
-        //setze Fehler
         setError({ isError: true, errorMessage: "Bitte geben Sie einen Wert ein" });
       } else {
-        // Reset
         setError({ isError: false, errorMessage: "" });
       }
     }
@@ -29,11 +27,9 @@ export function useFormInput(initialValue: string | null, required = false) {
   function validateInput(inputValue: string): boolean {
     if (required) {
       if (inputValue === "") {
-        //setze Fehler
         setError({ isError: true, errorMessage: "Bitte geben Sie einen Wert ein" });
         return false;
       } else {
-        // Reset
         setError({ isError: false, errorMessage: "" });
         return true;
       }

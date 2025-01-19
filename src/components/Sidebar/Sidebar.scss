@@ -1,16 +1,10 @@
 @use "/src/styles/colors" as *;
 
 .sidebar {
-  // margin: 0rem auto;
   display: flex;
   flex-direction: column;
   background-color: $sidebar-background-color;
   height: 100%;
-  // max-width: 250px;
-
-  // &__logo {
-  //   height: 4rem;
-  // }
 
   &__item-wrapper {
     overflow-y: auto;
@@ -18,12 +12,9 @@
   }
 
   &__items {
-    // background-color: transparent;
     display: flex;
     flex-direction: column;
-    // justify-content: center;
     align-items: center;
-    // background-color: #f5f5dc;
     gap: 1rem;
   }
 
@@ -31,19 +22,4 @@
     margin: 0.5rem auto;
     color: $primary-font-color;
   }
-
-  // &__items-text {
-  //   border-bottom: 2px solid $sidebar-items-text-border;
-  //   width: 2%;
-  //   text-align: center;
-  // }
 }
-
-// @media only screen and (max-width: 500px) {
-//   .sidebar-items {
-//     &__action {
-//       flex-direction: row;
-//       height: 2rem;
-//     }
-//   }
-// }

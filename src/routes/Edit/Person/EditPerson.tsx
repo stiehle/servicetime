@@ -1,6 +1,5 @@
 import "./EditPerson.scss";
 import { useParams } from "react-router-dom";
-
 import { useContext } from "react";
 import { ServicePerson } from "../../../types/person";
 import { NewPersonContext } from "../../../context/PersonContextProvider";
@@ -10,7 +9,6 @@ function EditPerson() {
   const { persons } = useContext(NewPersonContext);
   const { itemId } = useParams();
   const selectedPerson: ServicePerson | undefined = persons.find((item) => item.id === Number(itemId));
-  // console.log(itemId, selectedPerson);
 
   if (selectedPerson) {
     return (
@@ -18,7 +16,6 @@ function EditPerson() {
         <div className="edit-person__back">
           <div className="edit-person__input">
             <PersonsForm person={selectedPerson} />
-            {/* <PersonsForm person={null} /> */}
           </div>
         </div>
       </div>

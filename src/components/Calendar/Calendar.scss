@@ -4,13 +4,10 @@
 .calendar {
   display: flex;
   flex-direction: column;
-  // background-color: #ce97cb;
   width: 100%;
   height: 100%;
-  // padding-right: 0.3rem;
 
   &__menu {
-    // position: relative;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -32,7 +29,6 @@
     width: 45px;
     height: 45px;
     background-color: $button-primary;
-    // margin: auto 0;
     cursor: pointer;
     margin: 0 auto;
     color: $primary-font-color;
@@ -48,20 +44,15 @@
 
   &__number-of-days {
     display: inherit;
-    // height: 100%;
     gap: 1rem;
-    // color: #c50f0f;
-    // background-color: transparent;
   }
 
   &__button {
     display: inherit;
     justify-content: center;
     font-size: 1.8rem;
-    // background-color: red;
     border-top: 10px solid $button-border-calendar-day;
     background-color: $button-primary;
-    // border-radius: 5px 5px 10px 10px;
     border-radius: 8px;
     margin: 0 auto;
     width: 3rem;
@@ -71,14 +62,9 @@
 
   &__button:hover,
   &__one-day:hover {
-    // background-color: lighten(#535350, 80%);
     background-color: color.adjust($button-primary, $lightness: 80%);
     color: $secundary-font-color;
   }
-
-  // &__setup {
-  //   background-color: #51ff00;
-  // }
 
   &__head {
     display: flex;
@@ -96,13 +82,11 @@
   &__head-info-placeholder {
     min-width: 100%;
     height: 100%;
-    // background-color: #51ff00;
   }
 
   &__head-date {
     width: 100%;
     background-color: $primary-calendar-head;
-    // padding: 0 0.5rem;
   }
 
   &__body {
@@ -112,15 +96,11 @@
   &__wrapper {
     display: flex;
     flex-direction: row;
-    // background-color: #c28aba;
     width: 100%;
     height: 100%;
     overflow-y: auto;
-    // margin: 1rem 0;
     scrollbar-width: none;
-    // margin: 0 auto;
     background-color: $primary-calendar-body;
-
     padding-right: 0.4rem;
   }
 
@@ -129,9 +109,6 @@
     background-color: $primary-calendar-body;
     height: fit-content;
     min-width: 6rem;
-    // width: 15%;
-
-    // padding: 0.5rem;
   }
 
   &__body {
@@ -146,22 +123,15 @@
 
   &__add-person:hover,
   &__add-serviceblock:hover {
-    // color: white;
-    // fill: lighten(#535350, 60%);
     fill: color.adjust($button-primary, $lightness: 80%);
-    // background-color: darken(#535350, 10%);
   }
 
   &__days {
     display: flex;
     flex-direction: row;
     align-items: center;
-    // height: 10rem;
-    // background-color: #828873;
-    // width: 100%;
     height: 100%;
     width: 100%;
-    // gap: 0.2rem;
   }
 
   &__day {
@@ -181,16 +151,14 @@
 
   &__day--0 {
     color: $day--0;
-    // border: 2px solid #ff0000;
   }
 
   &__day--6 {
     color: $day--6;
-    // border: 2px solid #ff0000;
   }
 
   &__day-date {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-weight: 800;
   }
 
@@ -200,15 +168,10 @@
 
   &__day-year {
     font-size: 0.8rem;
-    // color: #1b1a1a;
   }
 
   &__day-weekday {
     font-size: 1rem;
     font-weight: 800;
-
-    // &--color {
-    //   color: $day-weekday;
-    // }
   }
 }

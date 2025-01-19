@@ -14,6 +14,7 @@ function Calendar() {
   const navigate = useNavigate();
   const weekDayNameShort = ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"];
   const offsetDay = useRef(0);
+  const oneDayInMillisecond = 86400000;
 
   useEffect(() => {
     createCalendarDays(0, 10, false);
@@ -25,11 +26,10 @@ function Calendar() {
     const now = Date.now();
 
     for (i; i < duration; i++) {
-      // console.log(i);
       if (firstDayOfWeek) {
-        calendarDays.push(Number(getFirstDateOfWeek(now)) + (daysOffset + i) * 86400000);
+        calendarDays.push(Number(getFirstDateOfWeek(now)) + (daysOffset + i) * oneDayInMillisecond);
       } else {
-        calendarDays.push(now + (daysOffset + i) * 86400000);
+        calendarDays.push(now + (daysOffset + i) * oneDayInMillisecond);
       }
     }
     setDays([...calendarDays]);
@@ -51,7 +51,7 @@ function Calendar() {
 
     return days.map((d, i) => {
       return (
-        <div key={i} className="calendar__button" onClick={() => selectDay(d)}>
+        <div title="Ansicht der Tage auswählen" key={i} className="calendar__button" onClick={() => selectDay(d)}>
           {d}
         </div>
       );
@@ -65,21 +65,23 @@ function Calendar() {
           <div className="calendar__menu">
             <div className="calendar__create">
               <IoMdPersonAdd
+                title="Neue Person erstellen"
                 className="calendar__add-person"
                 onClick={() => {
                   navigate("/create/person/");
                 }}
               />
               <PiListPlusFill
+                title="Neuer Serviceblock erstellen"
                 className="calendar__add-serviceblock"
                 onClick={() => {
                   navigate("/create/serviceblock/");
-                  // navigate("/edit/serviceblock/");
                 }}
               />
             </div>
             <div className="calendar__number-of-days">
               <div
+                title="1 Tag früher"
                 className="calendar__one-day calendar__one-day--left"
                 onClick={() => {
                   offsetDay.current -= 1;
@@ -89,6 +91,7 @@ function Calendar() {
               </div>
               {createNumberOfDays()}
               <div
+                title="1 Tag später"
                 className="calendar__one-day calendar__one-day--right"
                 onClick={() => {
                   offsetDay.current += 1;

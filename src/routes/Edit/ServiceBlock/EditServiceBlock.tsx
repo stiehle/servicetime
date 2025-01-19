@@ -9,7 +9,6 @@ function EditServiceBlock() {
   const { serviceBlockData } = useContext(NewServiceBlockContext);
   const { itemId } = useParams();
   const selectedServiceBlock: ServiceBlock | undefined = serviceBlockData.find((item) => item.id === Number(itemId));
-  console.log(selectedServiceBlock);
 
   if (selectedServiceBlock) {
     return (
@@ -17,7 +16,6 @@ function EditServiceBlock() {
         <div className="edit-serviceblock__back">
           <div className="edit-serviceblock__input">
             <ServiceblockForm serviceblock={selectedServiceBlock} />
-            {/* <ServiceblockForm serviceblock={null} /> */}
           </div>
         </div>
       </div>

@@ -2,7 +2,6 @@ import { createContext, ReactNode, useEffect, useReducer } from "react";
 import { ServicePerson, TechField } from "../types/person";
 import { supabase } from "../database/supabase";
 import userManagementReducer, { PersonManagementState } from "../hooks/personManagementReducer";
-// import { addNewPerson } from "../database/supabase";
 
 export const NewPersonContext = createContext<{
   persons: PersonManagementState;
@@ -18,19 +17,7 @@ export const NewPersonContext = createContext<{
   fetchPersonsData: function () {},
 });
 
-// type Props = {
-//   children: ReactNode;
-// };
-
-// type TechField = {
-//   field_of_app: number;
-//   note: string | null;
-//   technician: number;
-// };
-
-// function PersonContextProvider({children}: {children: ReactNode}) {
 function PersonContextProvider({ children }: { children: ReactNode }) {
-  // console.log(props.children);
   useEffect(() => {
     fetchPersonsData();
   }, []);
@@ -46,16 +33,11 @@ function PersonContextProvider({ children }: { children: ReactNode }) {
       first_name: first_name,
       last_name: last_name,
     };
-    // console.log(newPerson);
 
-    // const { tech_field } = person;
-    // console.log(tech_field);
     return { newPerson, tech_field };
   }
 
   function addNewPerson(newPerson: ServicePerson) {
-    console.log("Neue Person und Dispatch");
-
     const addPerson = async () => {
       const { data, error } = await supabase.from("service_technician").insert({
         first_name: newPerson.first_name,
@@ -65,7 +47,7 @@ function PersonContextProvider({ children }: { children: ReactNode }) {
       if (error) {
         console.log(error);
       }
-      console.log(data);
+
       personsDispatch({ type: "ADD_PERSON", person: newPerson });
       fetchPersonsData();
     };
@@ -74,23 +56,17 @@ function PersonContextProvider({ children }: { children: ReactNode }) {
   }
 
   function updatePerson(newPersonData: ServicePerson) {
-    console.log("Neue Person und Dispatch");
-    console.log(newPersonData);
-
     const { newPerson, tech_field } = slicePersonData(newPersonData);
-    console.log(newPerson, tech_field);
 
     const prevPerson = persons.find((person) => {
       return person.id === newPerson.id;
     });
 
     async function removeFieldOfApp(personId: number, field: number) {
-      // console.log("remove", personId);
       const { error } = await supabase.from("tech_field").delete().eq("technician, field_of_app", personId).in("field_of_app", [field]);
       if (error) {
         console.log(error);
       }
-      // console.log(data);
     }
 
     async function writeNewFieldOFApp(field: TechField) {
@@ -102,36 +78,27 @@ function PersonContextProvider({ children }: { children: ReactNode }) {
       if (error) {
         console.log(error);
       }
-      // console.log(data);
     }
-
-    console.log(prevPerson);
 
     if (prevPerson) {
       let arrayPrev: number[] = [];
       let arraySelected: number[] = [];
 
       prevPerson.tech_field.map((field) => {
-        // console.log("#", field.field_of_app);
         arrayPrev.push(field.field_of_app);
       });
       tech_field.map((selectedField) => {
-        // console.log("**", selectedField.field_of_app);
         arraySelected.push(selectedField.field_of_app);
       });
 
       let symDifference = arrayPrev.filter((x) => !arraySelected.includes(x)).concat(arraySelected.filter((x) => !arrayPrev.includes(x)));
-      console.log(arrayPrev, arraySelected, symDifference);
-      //   console.log(difference, intersection, symDifference);
 
       symDifference.map((x) => {
         if (arrayPrev.includes(x)) {
-          console.log("delete", x);
           removeFieldOfApp(newPerson.id, x);
         }
 
         if (arraySelected.includes(x)) {
-          console.log("write", x);
           writeNewFieldOFApp({
             field_of_app: x,
             technician: newPerson.id,
@@ -148,27 +115,23 @@ function PersonContextProvider({ children }: { children: ReactNode }) {
       }
 
       personsDispatch({ type: "UPDATE_PERSON", person: newPersonData });
-      // fetchPersonsData();
     };
 
     update();
   }
 
   function deletePerson(newPersonData: ServicePerson) {
-    console.log(newPersonData);
     const deletePerson = async () => {
       const { data, error } = await supabase.from("service_technician").delete().eq("id", newPersonData.id).select();
       if (error) {
         console.log(error);
       }
-      console.log(data);
     };
     personsDispatch({ type: "REMOVE_PERSON", person: newPersonData });
     deletePerson();
   }
 
   function fetchPersonsData() {
-    // console.log("in fechtPersonsData");
     const fetchPersons = async () => {
       const { data, error } = await supabase.from("service_technician").select("id, personal_nr,  first_name, last_name, tech_field(*)");
 
@@ -179,8 +142,6 @@ function PersonContextProvider({ children }: { children: ReactNode }) {
       if (data) {
         personsDispatch({ type: "INIT_PERSONS", person: data });
       } else return;
-
-      console.log(data);
     };
 
     fetchPersons();

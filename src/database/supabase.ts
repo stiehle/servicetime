@@ -16,3 +16,13 @@ export async function signInWithPassword() {
     return data;
   }
 }
+
+export async function checkUser() {
+  const { data } = await supabase.auth.getSession();
+  return data;
+}
+
+export async function signOutUser() {
+  const { error } = await supabase.auth.signOut();
+  return error;
+}

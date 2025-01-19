@@ -1,13 +1,18 @@
 import "./footer.scss";
 
-function Footer() {
+type prop = {
+  name: string;
+};
+
+function Footer({ name }: prop) {
   return (
     <>
       <div className="footer__items">
-        <a href="#" target="_blank">
+        <p>{name}</p>
+        <a href="http://www.stiehle.de/impressum" target="_blank">
           Impressum
         </a>
-        <a href="#" target="_blank">
+        <a href="http://www.stiehle.de/datenschutz" target="_blank">
           Datenschutzerklärung
         </a>
         <a href="http://www.stiehle.de" target="_blank">

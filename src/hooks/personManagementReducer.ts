@@ -17,16 +17,13 @@ export default function userManagementReducer(prevState: PersonManagementState, 
 
   switch (action.type) {
     case "ADD_PERSON": {
-      console.log("add Person");
       updatedState = [...prevState, action.person];
-      console.log(updatedState, action.person);
 
       break;
     }
 
     case "REMOVE_PERSON": {
       updatedState = prevState.filter((pers) => pers.id !== action.person.id);
-      console.log("remove", action.person);
 
       break;
     }
@@ -40,7 +37,7 @@ export default function userManagementReducer(prevState: PersonManagementState, 
     case "INIT_PERSONS": {
       // updatedState = [...prevState, ...action.person];
       updatedState = [...action.person];
-      // console.log(updatedState);
+
       break;
     }
 

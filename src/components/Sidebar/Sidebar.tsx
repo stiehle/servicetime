@@ -1,5 +1,4 @@
 import Logo from "../Logo/Logo";
-// import Serviceblock from "../Serviceblock/Serviceblock";
 import ServiceblockOpen from "../ServiceblockOpen/ServiceblockOpen";
 import "./Sidebar.scss";
 

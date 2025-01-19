@@ -8,11 +8,7 @@ export default defineConfig({
       less: {
         math: "parens-division",
       },
-      // styl: {
-      //   define: {
-      //     $specialColor: new stylus.nodes.RGBA(51, 197, 255, 1),
-      //   },
-      // },
+
       scss: {
         api: "modern-compiler", // or "modern", "legacy"
         importers: [

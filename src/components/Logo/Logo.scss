@@ -3,11 +3,13 @@
 .logo {
   width: 100%;
   background-color: $logo-background-color;
-  padding: 1.5rem;
+  height: 4rem;
 
   &__placeholder {
     display: flex;
     justify-content: center;
+    align-items: center;
+    height: 100%;
   }
 
   &__name {
@@ -24,14 +26,12 @@
 
     &--left {
       border-radius: 45px 45px 45px 0;
-      // border: 2px solid $primary-border-color;
     }
 
     &--right {
       border-radius: 45px 45px 0 45px;
       color: $logo-name-right-color;
       background-color: $logo-name-right-background-color;
-      // border: 2px solid $primary-border-color;
     }
   }
 }

@@ -34,7 +34,6 @@ export type ServiceBlock = {
   time_period_of: string | null;
   time_period_util: string | null;
   service_field: { field_of_app: number; service_block: number }[];
-  // service_field?: { field_of_app: number; service_block: number }[];
 };
 
 export type Service_Field = {
@@ -46,19 +45,3 @@ export type FieldOFApplication = {
   id: number;
   type: string;
 };
-
-// export type ServicePersons = {
-//   id: number;
-//   personal_nr: number;
-//   first_name: string;
-//   last_name: string;
-//   technician_field_of_app: {
-//     field_of_app: number;
-//     note: string | null;
-//     technician: number;
-//   }[];
-//   field_of_application: {
-//     id: number;
-//     type: string | null;
-//   }[];
-// }[];
